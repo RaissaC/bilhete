@@ -28,5 +28,4 @@ public class Bilhete {
   @Column(nullable = false, updatable = false)
   private String tipoPublico;
 
-  private String empresa;
 }
