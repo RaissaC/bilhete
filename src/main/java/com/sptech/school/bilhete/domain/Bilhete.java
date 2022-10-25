@@ -20,7 +20,7 @@ public class Bilhete {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private LocalDateTime dataCriacao;
+  private LocalDateTime emissao;
 
   @Column(nullable = false, updatable = false)
   private String categoria;

@@ -23,7 +23,7 @@ public class Usuario {
   private String nome;
 
   @Column(nullable = false, updatable = false)
-  private LocalDate dataNscimento;
+  private LocalDate dataNascimento;
 
   private String rg;
 
