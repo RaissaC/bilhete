@@ -1,32 +1,32 @@
 package com.sptech.school.bilhete.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bilhete {
+public class Usuario {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private LocalDateTime dataCriacao;
+  @Column(nullable = false, updatable = false)
+  private String nome;
 
   @Column(nullable = false, updatable = false)
-  private String categoria;
+  private LocalDate dataNscimento;
 
-  @Column(nullable = false, updatable = false)
-  private String tipoPublico;
+  private String rg;
 
-  private String empresa;
+  private String cpf;
+
 }
