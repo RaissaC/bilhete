@@ -1,6 +1,6 @@
 package com.sptech.school.bilhete.domain;
 
-import com.sun.istack.NotNull;
+import com.sptech.school.bilhete.Enum.EnumCategoria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,12 +21,11 @@ public class Bilhete {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  private LocalDateTime emissao;
+  private LocalDateTime dataCriacao;
 
   @Column(nullable = false, updatable = false)
-  private String categoria;
+  private EnumCategoria categoria;
 
-  @Column(nullable = false, updatable = false)
-  private String tipoPublico;
-
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Passagem passagem;
 }

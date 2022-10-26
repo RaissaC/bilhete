@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,8 +26,10 @@ public class Usuario {
   @Column(nullable = false, updatable = false)
   private LocalDate dataNascimento;
 
-  private String rg;
-
+  @Column(nullable = false, updatable = false)
   private String cpf;
+
+  @OneToMany(mappedBy = "usuario")
+  private List<Passagem> tiposPassagem;
 
 }

@@ -8,8 +8,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class BilheteController {
 
-  @GetMapping
-  public String abrirPagina(){
-    return "olá";
-  }
 }
