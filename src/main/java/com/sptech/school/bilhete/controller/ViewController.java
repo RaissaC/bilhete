@@ -1,6 +1,9 @@
 package com.sptech.school.bilhete.controller;
 
 import com.sptech.school.bilhete.domain.Usuario;
+import com.sptech.school.bilhete.repository.BilheteRepository;
+import com.sptech.school.bilhete.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class ViewController {
 
+  @Autowired
+  private UsuarioRepository usuarioRepository;
+
   @GetMapping("/cadastro")
   public String iniciarCadastro() {
     return "cadastro";
@@ -18,13 +24,14 @@ public class ViewController {
 
   @PostMapping("/cadastro")
   public String cadastroUsuario(Usuario usuario) {
+    usuarioRepository.save(usuario);
     return "redirect:/login";
   }
 
   @GetMapping("/login")
   public ModelAndView logarUsuario() {
     ModelAndView mv = new ModelAndView("login");
-//    mv.addObject("usuar);
+    mv.addObject("");
     return mv;
   }
 

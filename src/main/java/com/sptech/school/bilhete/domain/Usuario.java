@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,7 +23,7 @@ public class Usuario {
   private String nome;
 
   @Column(nullable = false, updatable = false)
-  private LocalDate dataNascimento;
+  private String dataNascimento;
 
   @Column(nullable = false, updatable = false)
   private String cpf;
