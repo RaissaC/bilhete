@@ -1,7 +1,6 @@
 package com.sptech.school.bilhete.controller;
 
 import com.sptech.school.bilhete.domain.Usuario;
-import com.sptech.school.bilhete.repository.BilheteRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,17 +21,19 @@ public class ViewController {
     return "cadastro";
   }
 
-  @PostMapping("/cadastro")
+  @PostMapping("/cadastro-usuario")
   public String cadastroUsuario(Usuario usuario) {
     usuarioRepository.save(usuario);
-    return "redirect:/login";
+    return "redirect:/lista-usuarios";
   }
 
-  @GetMapping("/login")
-  public ModelAndView logarUsuario() {
-    ModelAndView mv = new ModelAndView("login");
-    mv.addObject("");
+  @GetMapping("/lista-usuarios")
+  public ModelAndView listarUsuarios() {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("usuarios", usuarioRepository.findAll());
     return mv;
   }
+
+
 
 }
