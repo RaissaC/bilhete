@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +25,8 @@ public class Usuario {
   private String nome;
 
   @Column(nullable = false, updatable = false)
-  private String dataNascimento;
+  @DateTimeFormat(pattern = "dd/MM/yyyy")
+  private Date dataNascimento;
 
   @Column(nullable = false, updatable = false)
   private String cpf;

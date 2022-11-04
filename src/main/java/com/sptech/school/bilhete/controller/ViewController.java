@@ -1,6 +1,6 @@
 package com.sptech.school.bilhete.controller;
 
-import com.sptech.school.bilhete.domain.Usuario;
+import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class ViewController {
   }
 
   @PostMapping("/cadastro-usuario")
-  public String cadastroUsuario(Usuario usuario) {
+  public String cadastroUsuario(UsuarioCriacaoDto usuario) {
     usuarioRepository.save(usuario);
     return "redirect:/lista-usuarios";
   }
@@ -33,7 +33,5 @@ public class ViewController {
     mv.addObject("usuarios", usuarioRepository.findAll());
     return mv;
   }
-
-
 
 }
