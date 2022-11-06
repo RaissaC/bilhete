@@ -1,7 +1,8 @@
 package com.sptech.school.bilhete.controller;
 
-import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
+import com.sptech.school.bilhete.service.UsuarioServiceCreate;
+import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,25 +14,28 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class ViewController {
 
-  @Autowired
-  private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-  @GetMapping("/cadastro")
-  public String iniciarCadastro() {
-    return "cadastro";
-  }
+    @Autowired
+    private UsuarioServiceCreate usuarioServiceCreate;
 
-  @PostMapping("/cadastro-usuario")
-  public String cadastroUsuario(UsuarioCriacaoDto usuario) {
-    usuarioRepository.save(usuario);
-    return "redirect:/lista-usuarios";
-  }
+    @GetMapping("/cadastro")
+    public String iniciarCadastro() {
+        return "cadastro";
+    }
 
-  @GetMapping("/lista-usuarios")
-  public ModelAndView listarUsuarios() {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("usuarios", usuarioRepository.findAll());
-    return mv;
-  }
+    @PostMapping("/cadastro-usuario")
+    public String cadastroUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
+        usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
+        return "redirect:/lista-usuarios";
+    }
+
+    @GetMapping("/lista-usuarios")
+    public ModelAndView listarUsuarios() {
+        ModelAndView mv = new ModelAndView("usuarios");
+        mv.addObject("usuarios", usuarioRepository.findAll());
+        return mv;
+    }
 
 }

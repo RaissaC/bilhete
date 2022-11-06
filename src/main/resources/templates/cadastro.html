@@ -14,25 +14,21 @@
 
     <form method="POST" action="/cadastro-usuario">
         <p>
-        <div class="form-group">
-            <label for="nomeUsuario">Nome: </label>
-            <input size="50" type="text" class="form-control col-4" id="nomeUsuario" aria-describedby="emailHelp"
-                   name="nome">
-        </div>
+            <label for="nome">Nome: </label>
+            <input size="50" type="text" class="form-control col-4" id="nome" name="nome">
         </p>
         <p>
-        <div class="form-group">
-            <label for="dataNascimentoUsuario">Data de Nascimento: </label>
-            <input type="date" class="form-control col-4" id="dataNascimentoUsuario" name="dataNascimento">
-        </div>
+            <label for="dataNascimento">Data de Nascimento: </label>
+            <input type="date" class="form-control col-4" id="dataNascimento" name="dataNascimento">
         </p>
         <p>
-        <div class="form-group">
             <label for="cpf">CPF: </label>
             <input size="50" type="text" class="form-control col-4" id="cpf" name="cpf">
-        </div>
         </p>
-
+<!--        <p>-->
+<!--            <label for="passagens">Tipos de passagem: </label>-->
+<!--            <input size="50" type="text" class="form-control col-4" id="passagens" name="tiposPassagem">-->
+<!--        </p>-->
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>

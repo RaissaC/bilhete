@@ -25,6 +25,6 @@ public class Bilhete {
   @Column(nullable = false, updatable = false)
   private EnumCategoria categoria;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(optional = true, fetch = FetchType.LAZY)
   private Passagem passagem;
 }

@@ -1,12 +1,14 @@
 package com.sptech.school.bilhete.service.dto;
 
+
 import com.sptech.school.bilhete.domain.Passagem;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -16,17 +18,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class UsuarioCriacaoDto implements Serializable {
+public class UsuarioRespostaDto implements Serializable {
 
-  @NotNull
-  private String nome;
+    private Integer id;
 
-  @NotNull
-  private Date dataNascimento;
+    private String nome;
 
-  @NotNull
-  private String cpf;
+    private Date dataNascimento;
 
-//  @NotNull
-//  private List<Passagem> tiposPassagem;
+    private String cpf;
+
+    private List<Passagem> tiposPassagem;
 }

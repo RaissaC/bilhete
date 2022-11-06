@@ -20,9 +20,10 @@ public class Passagem {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
+  @Column(nullable = false, updatable = false)
   private EnumTipo tipo;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToOne(optional = true, fetch = FetchType.LAZY)
   private Usuario usuario;
 
   @OneToMany(mappedBy = "passagem")

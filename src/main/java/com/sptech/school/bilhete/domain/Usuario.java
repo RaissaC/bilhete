@@ -21,14 +21,14 @@ public class Usuario {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Column(nullable = false, updatable = false)
+  @Column(nullable = false, length = 45)
   private String nome;
 
-  @Column(nullable = false, updatable = false)
+  @Column(nullable = false)
   @DateTimeFormat(pattern = "dd/MM/yyyy")
   private Date dataNascimento;
 
-  @Column(nullable = false, updatable = false)
+  @Column(nullable = false, length = 20)
   private String cpf;
 
   @OneToMany(mappedBy = "usuario")
