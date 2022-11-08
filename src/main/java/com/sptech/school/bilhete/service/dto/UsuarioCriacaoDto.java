@@ -1,9 +1,9 @@
 package com.sptech.school.bilhete.service.dto;
 
 import com.sun.istack.NotNull;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-
 
 public class UsuarioCriacaoDto implements Serializable {
   @NotNull
@@ -42,9 +42,11 @@ public class UsuarioCriacaoDto implements Serializable {
   public void setCpf(String cpf) {
     this.cpf = cpf;
   }
+
   @Override
   public String toString() {
-    return "UsuarioCriacaoDto{" + "nome='" + nome + '\'' + ", dataNascimento=" + dataNascimento + ", cpf='" + cpf + '\'' + '}';
+    return "[UsuarioCriacaoDto]" +
+            "\nnome: " + nome +"\ndataNascimento: " + dataNascimento + "\ncpf: " + cpf;
   }
 
   //  @NotNull

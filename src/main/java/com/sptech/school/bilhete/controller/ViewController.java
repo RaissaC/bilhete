@@ -25,13 +25,13 @@ public class ViewController {
   @Autowired
   private UsuarioServiceCreate usuarioServiceCreate;
 
-  @GetMapping("/cadastro")
+  @GetMapping("/index")
   public String iniciarCadastro() {
-    return "cadastro";
+    return "index";
   }
 
-  @PostMapping("/cadastro-usuario")
-  public String cadastroUsuario(@Valid UsuarioCriacaoDto usuarioCriacaoDto) {
+  @PostMapping("/cadastro")
+  public String cadastroUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
     System.out.println(usuarioCriacaoDto);
     usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
     return "redirect:/lista-usuarios";
