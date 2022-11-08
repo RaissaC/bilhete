@@ -5,37 +5,42 @@ import com.sptech.school.bilhete.service.UsuarioServiceCreate;
 import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
 public class ViewController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+  @Autowired
+  private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private UsuarioServiceCreate usuarioServiceCreate;
+  @Autowired
+  private UsuarioServiceCreate usuarioServiceCreate;
 
-    @GetMapping("/cadastro")
-    public String iniciarCadastro() {
-        return "cadastro";
-    }
+  @GetMapping("/cadastro")
+  public String iniciarCadastro() {
+    return "cadastro";
+  }
 
-    @PostMapping("/cadastro-usuario")
-    public String cadastroUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-        usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
-        return "redirect:/lista-usuarios";
-    }
+  @PostMapping("/cadastro-usuario")
+  public String cadastroUsuario(@Valid UsuarioCriacaoDto usuarioCriacaoDto) {
+    System.out.println(usuarioCriacaoDto);
+    usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
+    return "redirect:/lista-usuarios";
+  }
 
-    @GetMapping("/lista-usuarios")
-    public ModelAndView listarUsuarios() {
-        ModelAndView mv = new ModelAndView("usuarios");
-        mv.addObject("usuarios", usuarioRepository.findAll());
-        return mv;
-    }
+  @GetMapping("/lista-usuarios")
+  public String listarUsuarios(Model model) {
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+    return "usuarios";
+  }
 
 }

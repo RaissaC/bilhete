@@ -1,32 +1,52 @@
 package com.sptech.school.bilhete.service.dto;
 
-import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 
-@Getter
-@Setter
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class UsuarioCriacaoDto implements Serializable {
-
   @NotNull
   private String nome;
-
   @NotNull
-  private Date dataNascimento;
-
+  private LocalDate dataNascimento;
   @NotNull
   private String cpf;
 
-//  @NotNull
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf) {
+    this.nome = nome;
+    this.dataNascimento = dataNascimento;
+    this.cpf = cpf;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public LocalDate getDataNascimento() {
+    return dataNascimento;
+  }
+
+  public void setDataNascimento(LocalDate dataNascimento) {
+    this.dataNascimento = dataNascimento;
+  }
+
+  public String getCpf() {
+    return cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
+  @Override
+  public String toString() {
+    return "UsuarioCriacaoDto{" + "nome='" + nome + '\'' + ", dataNascimento=" + dataNascimento + ", cpf='" + cpf + '\'' + '}';
+  }
+
+  //  @NotNull
 //  private List<Passagem> tiposPassagem;
 }

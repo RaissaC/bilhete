@@ -1,20 +1,12 @@
 package com.sptech.school.bilhete.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Usuario {
 
   @Id
@@ -26,7 +18,7 @@ public class Usuario {
 
   @Column(nullable = false)
   @DateTimeFormat(pattern = "dd/MM/yyyy")
-  private Date dataNascimento;
+  private LocalDate dataNascimento;
 
   @Column(nullable = false, length = 20)
   private String cpf;
@@ -34,4 +26,43 @@ public class Usuario {
   @OneToMany(mappedBy = "usuario")
   private List<Passagem> tiposPassagem;
 
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public LocalDate getDataNascimento() {
+    return dataNascimento;
+  }
+
+  public void setDataNascimento(LocalDate dataNascimento) {
+    this.dataNascimento = dataNascimento;
+  }
+
+  public String getCpf() {
+    return cpf;
+  }
+
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
+  }
+//
+//  public List<Passagem> getTiposPassagem() {
+//    return tiposPassagem;
+//  }
+//
+//  public void setTiposPassagem(List<Passagem> tiposPassagem) {
+//    this.tiposPassagem = tiposPassagem;
+//  }
 }
