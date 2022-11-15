@@ -26,20 +26,22 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Data de Nascimento</th>
                         <th scope="col">CPF</th>
-                        <th scope="col">Passagens</th>
+                        <!--                        <th scope="col">Passagens</th>-->
+                        <th scope="col">#</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="usuario : ${usuarios}">
                         <td th:text="${usuario.id}"></td>
                         <td th:text="${usuario.nome}"></td>
-                        <td th:text="${usuario.dataNascimento}"></td>
+                        <td th:text="${{usuario.dataNascimento}}"></td>
                         <td th:text="${usuario.cpf}"></td>
                         <!--      <td th:text="${usuario.tiposPassagem}"></td>-->
+                        <td><a th:href="@{'/editar/' + ${usuario.id}}">Editar</a></td>
                     </tr>
                     </tbody>
                 </table>
