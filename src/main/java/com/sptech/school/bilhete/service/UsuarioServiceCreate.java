@@ -23,8 +23,6 @@ public class UsuarioServiceCreate {
     @Autowired
     private UsuarioRepository usuarioRepository;
     public void criarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-
-        System.out.println(usuarioCriacaoDto);
         usuarioRepository.save(usuarioMapper.toDomain(usuarioCriacaoDto));
     }
 }
