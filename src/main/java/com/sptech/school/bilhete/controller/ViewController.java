@@ -45,7 +45,7 @@ public class ViewController {
     @PostMapping("/cadastro")
     public String cadastrarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
         usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
-        return "redirect:/usuarios";
+        return "usuarios";
     }
 
 

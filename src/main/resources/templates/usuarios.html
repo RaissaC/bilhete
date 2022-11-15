@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Usuários Cadastrados</title>
+    <title>Contando Passos</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
 </head>
-<body>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Data de Nascimento</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Passagens</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="usuario : ${usuarios}">
-            <td th:text="${usuario.id}"></td>
-            <td th:text="${usuario.nome}"></td>
-            <td th:text="${usuario.dataNascimento}"></td>
-            <td th:text="${usuario.cpf}"></td>
-            <!--      <td th:text="${usuario.tiposPassagem}"></td>-->
-        </tr>
-        </tbody>
-    </table>
+
+
+<body class="is-preload">
+<div id="wrapper">
+    <header id="header">
+        <h1><a href="/getIndex">Contando Passos</a></h1>
+        <nav class="links">
+            <ul>
+                <li><a href="/getUsuarios">Perfis Cadastrados</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="main">
+        <article class="post">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Data de Nascimento</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Passagens</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}"></td>
+                        <td th:text="${usuario.nome}"></td>
+                        <td th:text="${usuario.dataNascimento}"></td>
+                        <td th:text="${usuario.cpf}"></td>
+                        <!--      <td th:text="${usuario.tiposPassagem}"></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </div>
 </div>
 </body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+
 </html>
