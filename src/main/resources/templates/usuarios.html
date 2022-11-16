@@ -12,10 +12,10 @@
 <body class="is-preload">
 <div id="wrapper">
     <header id="header">
-        <h1><a href="/getIndex">Contando Passos</a></h1>
+        <h1><a href="/index">Contando Passos</a></h1>
         <nav class="links">
             <ul>
-                <li><a href="/getUsuarios">Perfis Cadastrados</a></li>
+                <li><a href="/usuarios">Perfis Cadastrados</a></li>
             </ul>
         </nav>
     </header>
@@ -41,7 +41,7 @@
                         <td th:text="${{usuario.dataNascimento}}"></td>
                         <td th:text="${usuario.cpf}"></td>
                         <!--      <td th:text="${usuario.tiposPassagem}"></td>-->
-                        <td><a th:href="@{'/editar/' + ${usuario.id}}">Editar</a></td>
+                        <td><a th:href="@{/editar/{id}(id=${usuario.id})}">Editar</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -8,19 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class ViewController {
 
-
-    @GetMapping("/getIndex")
+    @GetMapping("/index")
     public String index() {
         return "index";
     }
 
-    @GetMapping("/getCadastro")
+    @GetMapping("/cadastro")
     public String getCadastro() {
         return "cadastro";
     }
 
 
-    @GetMapping("/getLogin")
+    @GetMapping("/login")
     public String getLogin() {
         return "login";
     }

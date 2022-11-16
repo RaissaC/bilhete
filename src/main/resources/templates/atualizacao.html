@@ -18,18 +18,22 @@
         <article class="post">
             <header>
                 <div class="title">
-                    <h2><a>Cadastro</a></h2>
+                    <h2><a>Editar Cadastro</a></h2>
                 </div>
             </header>
             <div>
-                <form method="POST" action="/cadastro">
+                <form method="POST" action="/cadastro" th:object="${usuario}">
+                    <p>
+                        <label for="nome">ID </label>
+                        <input size="50" type="text" class="form-control col-4" id="id" name="nome" th:field="*{id}">
+                    </p>
                     <p>
                         <label for="nome">Nome </label>
-                        <input size="50" type="text" class="form-control col-4" id="nome" name="nome">
+                        <input size="50" type="text" class="form-control col-4" id="nome" name="nome" th:field="*{nome}">
                     </p>
                     <p>
                         <label for="dataNascimento">Data de Nascimento </label>
-                        <input type="text" class="form-control col-4" id="dataNascimento" name="dataNascimento">
+                        <input type="text" class="form-control col-4" id="dataNascimento" name="dataNascimento" th:field="*{dataNascimento}">
                     </p>
                     <p>
                         <label for="cpf">CPF </label>
@@ -46,7 +50,7 @@
                     <li><a href="/index" class="button large">Voltar</a></li>
                 </ul>
                 <ul class="actions" style="margin-left: 70%;">
-                    <li><a href="/login" class="button large" type="submit">Logar</a></li>
+                    <li><a href="/login" class="button large" type="submit">Atualizar</a></li>
                 </ul>
             </footer>
         </article>

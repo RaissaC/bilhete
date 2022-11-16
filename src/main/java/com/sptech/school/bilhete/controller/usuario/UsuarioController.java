@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
 public class UsuarioController {
-
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -27,7 +27,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioServiceCreate usuarioServiceCreate;
 
-    @GetMapping("/getUsuarios")
+    @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.findAll());
         return "usuarios";
@@ -40,13 +40,11 @@ public class UsuarioController {
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView editarusuario(@PathVariable("id") Long id){
-        ModelAndView mv = new ModelAndView("cadastro");
+    public ModelAndView editarusuario(@PathVariable("id") Integer id){
+        ModelAndView mv = new ModelAndView("atualizacao");
 
-        Usuario usuarioEncontrado = (Usuario) usuarioRepository.findAll().stream()
-                .filter(usuario -> usuario.getId().equals(id));
-
-        mv.addObject("usuario", usuarioEncontrado);
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        mv.addObject("usuario", usuario);
         return mv;
     }
 
