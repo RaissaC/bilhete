@@ -21,32 +21,29 @@ import java.util.Optional;
 @RequestMapping("/")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+  @Autowired
+  private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private UsuarioServiceCreate usuarioServiceCreate;
+  @Autowired
+  private UsuarioServiceCreate usuarioServiceCreate;
 
-    @GetMapping("/usuarios")
-    public String usuarios(Model model) {
-        model.addAttribute("usuarios", usuarioRepository.findAll());
-        return "usuarios";
-    }
+  @GetMapping("/usuarios")
+  public String usuarios(Model model) {
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+    return "usuarios";
+  }
 
-    @PostMapping("/cadastro")
-    public String cadastrarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-        usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
-        return "usuarios";
-    }
+  @PostMapping("/cadastrar")
+  public String cadastrarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
+    usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
+    return "usuarios";
 
-    @GetMapping("/editar/{id}")
-    public ModelAndView editarusuario(@PathVariable("id") Integer id){
-        ModelAndView mv = new ModelAndView("atualizacao");
+  }
 
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-        mv.addObject("usuario", usuario);
-        return mv;
-    }
-
-
+  @GetMapping("/editar/{id}")
+  public String editarusuario(@PathVariable("id") Integer id, Model model) {
+    Optional<Usuario> usuarioRepository = this.usuarioRepository.findById(id);
+    usuarioRepository.ifPresent(usuario -> model.addAttribute("usuario", usuario));
+    return "atualizacao";
+  }
 }

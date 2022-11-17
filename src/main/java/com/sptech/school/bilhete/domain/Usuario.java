@@ -57,12 +57,12 @@ public class Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-//
-//  public List<Passagem> getTiposPassagem() {
-//    return tiposPassagem;
-//  }
-//
-//  public void setTiposPassagem(List<Passagem> tiposPassagem) {
-//    this.tiposPassagem = tiposPassagem;
-//  }
+
+  public List<Passagem> getTiposPassagem() {
+    return tiposPassagem;
+  }
+
+  public void setTiposPassagem(List<Passagem> tiposPassagem) {
+    this.tiposPassagem = tiposPassagem;
+  }
 }

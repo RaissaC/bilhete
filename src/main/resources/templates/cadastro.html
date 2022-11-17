@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="icon" th:href="@{/image/trajeto.png}">
 </head>
 <body class="is-preload">
 
@@ -22,7 +23,7 @@
                 </div>
             </header>
             <div>
-                <form method="POST" action="/cadastro">
+                <form method="POST" action="/cadastrar" th:object="${usuario}">
                     <p>
                         <label for="nome">Nome </label>
                         <input size="50" type="text" class="form-control col-4" id="nome" name="nome">
@@ -35,10 +36,21 @@
                         <label for="cpf">CPF </label>
                         <input size="50" type="text" class="form-control col-4" id="cpf" name="cpf">
                     </p>
-                    <!--        <p>-->
-                    <!--            <label for="passagens">Tipos de passagem: </label>-->
-                    <!--            <input size="50" type="text" class="form-control col-4" id="passagens" name="tiposPassagem">-->
-                    <!--        </p>-->
+                    <p>
+                        <label>Tipos de passagem:</label>
+                    </p>
+                    <tr th:each="passagem : ${usuario.tiposPassagem}">
+                        <td th:text="${passagem.tipo}"><td>
+                        <input type="checkbox" th:field="tiposPassagem" th:value="${passagem.id}">
+                    </tr>
+
+
+<!--                    <ul>-->
+<!--                        <li th:each="passagem : ${usuario.tiposPassagem}">-->
+<!--                            <input type="checkbox" th:value="${passagem.id}">-->
+<!--                            <label th:text="${passagem.tipo}"></label>-->
+<!--                        </li>-->
+<!--                    </ul>-->
                 </form>
             </div>
             <footer>
@@ -46,7 +58,7 @@
                     <li><a href="/index" class="button large">Voltar</a></li>
                 </ul>
                 <ul class="actions" style="margin-left: 70%;">
-                    <li><a href="/login" class="button large" type="submit">Logar</a></li>
+                    <li><a href="/login" class="button large" type="submit">Cadastrar</a></li>
                 </ul>
             </footer>
         </article>

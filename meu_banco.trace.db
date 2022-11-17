@@ -1,0 +1,6 @@
+2022-11-17 15:56:43 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into passagem\000d\000avalues (1,1,1)\000d\000a\000d\000a[*]select * from USUARIO"; SQL statement:
+insert into passagem
+values (1,1,1)
+
+select * from USUARIO [42000-214]

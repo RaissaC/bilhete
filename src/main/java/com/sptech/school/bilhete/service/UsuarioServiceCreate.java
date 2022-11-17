@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@Getter
-@Setter
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class UsuarioServiceCreate {
 
     @Autowired
