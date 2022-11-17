@@ -23,7 +23,7 @@
                 </div>
             </header>
             <div>
-                <form method="POST" action="/cadastrar" th:object="${usuario}">
+                <form method="POST" action="/cadastrar">
                     <p>
                         <label for="nome">Nome </label>
                         <input size="50" type="text" class="form-control col-4" id="nome" name="nome">
@@ -39,9 +39,9 @@
                     <p>
                         <label>Tipos de passagem:</label>
                     </p>
-                    <tr th:each="passagem : ${usuario.tiposPassagem}">
-                        <td th:text="${passagem.tipo}"><td>
-                        <input type="checkbox" th:field="tiposPassagem" th:value="${passagem.id}">
+                    <tr th:each="passagem : ${tipoPassagens}">
+                        <input type="checkbox" name="passagem.id">
+                        <td th:text="${passagem}"><td>
                     </tr>
 
 
