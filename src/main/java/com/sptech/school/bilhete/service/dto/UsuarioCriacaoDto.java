@@ -1,6 +1,6 @@
 package com.sptech.school.bilhete.service.dto;
 
-import com.sptech.school.bilhete.service.dto.passagem.PassagemCriacaoDto;
+import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sun.istack.NotNull;
 
 import java.io.Serializable;
@@ -17,13 +17,13 @@ public class UsuarioCriacaoDto implements Serializable {
   private String cpf;
 
   @NotNull
-  private List<PassagemCriacaoDto> tiposPassagem;
+  private List<EnumTipo> tiposPassagem;
 
   public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.tiposPassagem = new ArrayList<>();
+    this.tiposPassagem = new ArrayList<>(List.of(EnumTipo.values()));
   }
 
   public String getNome() {
@@ -56,11 +56,11 @@ public class UsuarioCriacaoDto implements Serializable {
         "\nnome: " + nome + "\ndataNascimento: " + dataNascimento + "\ncpf: " + cpf;
   }
 
-  public List<PassagemCriacaoDto> getTiposPassagem() {
+  public List<EnumTipo> getTiposPassagem() {
     return tiposPassagem;
   }
 
-  public void setTiposPassagem(List<PassagemCriacaoDto> tiposPassagem) {
+  public void setTiposPassagem(List<EnumTipo> tiposPassagem) {
     this.tiposPassagem = tiposPassagem;
   }
 }

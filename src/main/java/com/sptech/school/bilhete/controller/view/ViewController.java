@@ -22,11 +22,9 @@ public class ViewController {
   }
 
   @GetMapping("/cadastro")
-  public String getCadastro(UsuarioCriacaoDto usuarioCriacaoDto, Model model) {
-    List<EnumTipo> listaTipos = new ArrayList<>();
-    listaTipos.addAll(Arrays.asList(EnumTipo.values()));
-    model.addAttribute("tipoPassagens", listaTipos);
-
+  public String getCadastro(Model model) {
+    List<EnumTipo> listaTiposPassagens = new ArrayList<>(List.of(EnumTipo.values()));
+    model.addAttribute("tipoPassagens", listaTiposPassagens);
     return "cadastro";
   }
 
