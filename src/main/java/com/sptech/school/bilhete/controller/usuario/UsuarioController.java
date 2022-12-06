@@ -36,12 +36,12 @@ public class UsuarioController {
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, BindingResult result, RedirectAttributes redirectAttributes) {
 
     if (result.hasErrors()) {
+      redirectAttributes.addAttribute("mensagem", "Mensagem de validação");
       return "cadastro";
+    } else {
+      usuarioServiceCreate.criarUsuario(usuarioCriacao);
+      return "usuarios";
     }
-
-    usuarioServiceCreate.criarUsuario(usuarioCriacao);
-    redirectAttributes.addAttribute("mensagem", "Mensagem de validação");
-    return "usuarios";
   }
 
   //  @GetMapping("/login")

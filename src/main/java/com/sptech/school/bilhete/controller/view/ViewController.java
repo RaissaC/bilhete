@@ -16,7 +16,7 @@ public class ViewController {
   }
 
   @GetMapping("/cadastro")
-  public String getCadastro(UsuarioCriacaoDto usuarioCriacao) {
+  public String getCadastro() {
 //    List<EnumTipo> listaTiposPassagens = new ArrayList<>(List.of(EnumTipo.values()));
 //    model.addAttribute("tipoPassagens", listaTiposPassagens);
     return "cadastro";
