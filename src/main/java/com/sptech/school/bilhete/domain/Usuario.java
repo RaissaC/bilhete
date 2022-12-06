@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Usuario {
@@ -23,8 +22,11 @@ public class Usuario {
     @Column(nullable = false, length = 20)
     private String cpf;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Passagem> tiposPassagem;
+    @Column(nullable = false, length = 20)
+    private String tipoPassagem;
+
+//    @OneToMany(mappedBy = "usuario")
+//    private List<Passagem> tiposPassagem;
 
     public Integer getId() {
         return id;
@@ -58,11 +60,20 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-  public List<Passagem> getTiposPassagem() {
-    return tiposPassagem;
-  }
+//  public List<Passagem> getTiposPassagem() {
+//    return tiposPassagem;
+//  }
+//
+//  public void setTiposPassagem(List<Passagem> tiposPassagem) {
+//    this.tiposPassagem = tiposPassagem;
+//  }
 
-  public void setTiposPassagem(List<Passagem> tiposPassagem) {
-    this.tiposPassagem = tiposPassagem;
-  }
+
+    public String getTipoPassagem() {
+        return tipoPassagem;
+    }
+
+    public void setTipoPassagem(String tipoPassagem) {
+        this.tipoPassagem = tipoPassagem;
+    }
 }

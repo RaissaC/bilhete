@@ -3,6 +3,7 @@ package com.sptech.school.bilhete.service.dto;
 import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sun.istack.NotNull;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class UsuarioCriacaoDto implements Serializable {
   @NotNull
+  @Size(min = 5, max = 250)
   private String nome;
   @NotNull
   private LocalDate dataNascimento;
