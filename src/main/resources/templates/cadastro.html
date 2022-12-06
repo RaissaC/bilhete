@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="icon" th:href="@{/image/trajeto.png}">
 </head>
 <body class="is-preload">
@@ -23,24 +24,31 @@
                 </div>
             </header>
             <div>
-                <form method="POST" action="/cadastrar">
+                <form method="POST" action="/cadastrar" th:object="${usuarioCriacao}">
+                    <div class="alert alert-success" th:text="${mensagem}"
+                         th:if="${not #strings.isEmpty(mensagem)}"></div>
+
+                    <div class="alert alert-danger">
+                        <div th:each="detailedError : ${#fields.detailedErrors()}">
+                            <span th:text="${detailedError.message}"></span>
+                        </div>
+                    </div>
                     <p>
-                        <label for="nome">Nome completo</label>
-                        <input size="50" type="text" class="form-control col-4" id="nome" name="nome">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" class="form-control col-4" id="nome" name="nome"/>
                     </p>
                     <p>
-                        <label for="dataNascimento">Data de Nascimento </label>
+                        <label>Data de Nascimento </label>
                         <input type="text" class="form-control col-4" id="dataNascimento" name="dataNascimento">
                     </p>
                     <p>
                         <label for="cpf">CPF </label>
-                        <input size="50" type="text" class="form-control col-4" id="cpf" name="cpf">
+                        <input type="text" class="form-control col-4" id="cpf" name="cpf">
                     </p>
-
-                    <label>Tipo de passagem:</label>
-                    <input type="text" name="tipoPassagem" class="form-control col-4"/>
-
-
+                    <p>
+                        <label for="tipoPassagem">Tipo de passagem:</label>
+                        <input type="text" class="form-control col-4" id="tipoPassagem" name="tipoPassagem"/>
+                    </p>
                     <!--                    <table>-->
                     <!--                        <tr>-->
                     <!--                            <td>-->
@@ -57,16 +65,14 @@
                     <!--                            <label th:text="${passagem.tipo}"></label>-->
                     <!--                        </li>-->
                     <!--                    </ul>-->
+                    <ul class="actions">
+                        <li><a href="/index" class="button large">Voltar</a></li>
+                    </ul>
+                    <ul class="actions" style="margin-left: 85%; margin-top: -7%">
+                        <button class="button large" type="submit">Cadastrar</button>
+                    </ul>
                 </form>
             </div>
-            <footer>
-                <ul class="actions">
-                    <li><a href="/index" class="button large">Voltar</a></li>
-                </ul>
-                <ul class="actions" style="margin-left: 70%;">
-                    <li><a href="/login" class="button large" type="submit">Cadastrar</a></li>
-                </ul>
-            </footer>
         </article>
     </div>
 </div>

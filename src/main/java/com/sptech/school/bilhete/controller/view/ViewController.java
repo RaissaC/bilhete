@@ -2,10 +2,9 @@ package com.sptech.school.bilhete.controller.view;
 
 import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
@@ -17,7 +16,7 @@ public class ViewController {
   }
 
   @GetMapping("/cadastro")
-  public String getCadastro() {
+  public String getCadastro(UsuarioCriacaoDto usuarioCriacao) {
 //    List<EnumTipo> listaTiposPassagens = new ArrayList<>(List.of(EnumTipo.values()));
 //    model.addAttribute("tipoPassagens", listaTiposPassagens);
     return "cadastro";
@@ -25,9 +24,7 @@ public class ViewController {
 
 
   @GetMapping("/login")
-  public void getLogin(@Valid UsuarioCriacaoDto usuarioCriacaoDto) {
-
-//    usuarioCriacaoDto.getNome().length() < 5 ? return "login" : return "";
-
+  public String getLogin() {
+    return "login";
   }
 }

@@ -8,13 +8,12 @@ import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -34,11 +33,28 @@ public class UsuarioController {
   }
 
   @PostMapping("/cadastrar")
-  public String cadastrarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-    usuarioServiceCreate.criarUsuario(usuarioCriacaoDto);
-    return "usuarios";
+  public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, BindingResult result, RedirectAttributes redirectAttributes) {
 
+    if (result.hasErrors()) {
+      return "cadastro";
+    }
+
+    usuarioServiceCreate.criarUsuario(usuarioCriacao);
+    redirectAttributes.addAttribute("mensagem", "Mensagem de validação");
+    return "usuarios";
   }
+
+  //  @GetMapping("/login")
+//  public void getLogin(@Valid @RequestBody UsuarioCriacaoDto usuarioCriacaoDto, BindingResult result, Model model) {
+//
+//    Usuario usuarioDomain = usuarioMapper.toDomain(usuarioCriacaoDto);
+//
+//    if (result.hasErrors()) {
+//
+//    }
+//    usuarioRepository.save(usuarioDomain);
+//    model.addAttribute("users", usuarioRepository.findAll());
+//  }/
 
   @GetMapping("/editar/{id}")
   public String editarusuario(@PathVariable("id") Integer id, Model model) {
