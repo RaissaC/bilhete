@@ -1,5 +1,6 @@
 package com.sptech.school.bilhete.controller.view;
 
+import com.sptech.school.bilhete.domain.Usuario;
 import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,8 @@ public class ViewController {
   }
 
   @GetMapping("/cadastro")
-  public String getCadastro() {
+  public String getCadastro(Model model, UsuarioCriacaoDto usuarioCriacaoDto) {
+    model.addAttribute("usuarioCriacao", usuarioCriacaoDto);
 //    List<EnumTipo> listaTiposPassagens = new ArrayList<>(List.of(EnumTipo.values()));
 //    model.addAttribute("tipoPassagens", listaTiposPassagens);
     return "cadastro";

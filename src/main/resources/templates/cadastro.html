@@ -25,12 +25,13 @@
             </header>
             <div>
                 <form method="POST" action="/cadastrar" th:object="${usuarioCriacao}">
-                    <div class="alert alert-success" th:text="${mensagem}"
-                         th:if="${not #strings.isEmpty(mensagem)}"></div>
 
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success" th:text="${sucesso}"
+                         th:if="${not #strings.isEmpty(sucesso)}"></div>
+
+                    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
                         <div th:each="detailedError : ${#fields.detailedErrors()}">
-                            <span th:text="${detailedError.message}"></span>
+                            <span th:text="${falha}"></span>
                         </div>
                     </div>
                     <p>

@@ -36,11 +36,14 @@ public class UsuarioController {
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, BindingResult result, RedirectAttributes redirectAttributes) {
 
     if (result.hasErrors()) {
-      redirectAttributes.addAttribute("mensagem", "Mensagem de validação");
+      redirectAttributes.addFlashAttribute("falha", "Verifique os campos");
+
       return "cadastro";
     } else {
       usuarioServiceCreate.criarUsuario(usuarioCriacao);
+      redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso");
       return "usuarios";
+
     }
   }
 
