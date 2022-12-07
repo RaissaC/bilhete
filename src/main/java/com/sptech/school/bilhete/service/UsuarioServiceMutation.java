@@ -20,13 +20,13 @@ public class UsuarioServiceMutation {
   private UsuarioRepository usuarioRepository;
 
   public void atualizarUsuario(UsuarioAtualizacaoDto usuarioAtualizacao) {
-    Optional<Usuario> usuarioRepository = this.usuarioRepository.findById(usuarioAtualizacao.getId());
+    Usuario usuarioDomain = usuarioMapper.toDomain(usuarioAtualizacao);
+    Optional<Usuario> usuarioRepository = this.usuarioRepository.findById(usuarioDomain.getId());
     usuarioRepository.ifPresent(usuario -> {
       usuario.setNome(usuarioAtualizacao.getNome());
       usuario.setDataNascimento(usuarioAtualizacao.getDataNascimento());
       usuario.setCpf(usuarioAtualizacao.getCpf());
       usuario.setTipoPassagem(usuarioAtualizacao.getTipoPassagem());
-
     });
   }
 

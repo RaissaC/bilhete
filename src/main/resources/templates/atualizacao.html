@@ -34,7 +34,8 @@
                     </p>
                     <p>
                         <label for="dataNascimento">Data de Nascimento </label>
-                        <input type="text" class="form-control col-4" id="dataNascimento" name="dataNascimento" th:field="*{dataNascimento}">
+                        <input type="text" class="form-control col-4" id="dataNascimento" name="dataNascimento"
+                               th:field="*{dataNascimento}">
                     </p>
                     <p>
                         <label for="cpf">CPF </label>
@@ -42,22 +43,22 @@
                     </p>
                     <p>
                         <label for="tipoPassagem">Tipo de passagem:</label>
-                        <input type="text" class="form-control col-4" id="tipoPassagem" name="tipoPassagem" th:field="*{tipoPassagem}">
+                        <input type="text" class="form-control col-4" id="tipoPassagem" name="tipoPassagem"
+                               th:field="*{tipoPassagem}">
                     </p>
                     <!--        <p>-->
                     <!--            <label for="passagens">Tipos de passagem: </label>-->
                     <!--            <input size="50" type="text" class="form-control col-4" id="passagens" name="tiposPassagem">-->
                     <!--        </p>-->
+
+                    <ul class="actions">
+                        <li><a href="/index" class="button large">Voltar</a></li>
+                    </ul>
+                    <ul class="actions" style="margin-left: 85%; margin-top: -7%">
+                        <button class="button large" type="submit">Atualizar</button>
+                    </ul>
                 </form>
             </div>
-            <footer>
-                <ul class="actions">
-                    <li><a href="/index" class="button large">Voltar</a></li>
-                </ul>
-                <ul class="actions" style="margin-left: 70%;">
-                    <li><a class="button large" type="submit">Atualizar</a></li>
-                </ul>
-            </footer>
         </article>
     </div>
 </div>

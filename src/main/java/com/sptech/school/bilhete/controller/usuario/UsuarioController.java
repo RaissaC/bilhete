@@ -64,11 +64,11 @@ public class UsuarioController {
     return "atualizacao";
   }
 
-  @GetMapping("/editar/{id}")
+  @PostMapping("/editar/{id}")
   public String editarusuario(UsuarioAtualizacaoDto usuarioAtualizacao, Model model) {
     usuarioServiceMutation.atualizarUsuario(usuarioAtualizacao);
-    model.addAttribute("usuarioAtualizacao", usuarioAtualizacao);
-    return "atualizacao";
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+    return "usuarios";
   }
 
 }
