@@ -4,6 +4,7 @@ package com.sptech.school.bilhete.controller.usuario;
 import com.sptech.school.bilhete.domain.Usuario;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.UsuarioServiceCreate;
+import com.sptech.school.bilhete.service.UsuarioServiceDelete;
 import com.sptech.school.bilhete.service.UsuarioServiceMutation;
 import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioAtualizacaoDto;
@@ -30,6 +31,9 @@ public class UsuarioController {
 
   @Autowired
   private UsuarioServiceMutation usuarioServiceMutation;
+
+  @Autowired
+  private UsuarioServiceDelete usuarioServiceDelete;
 
   @GetMapping("/usuarios")
   public String usuarios(Model model) {
@@ -71,4 +75,10 @@ public class UsuarioController {
     return "usuarios";
   }
 
+  @DeleteMapping
+  public String excluir(@PathVariable Integer id, Model model) {
+    usuarioServiceDelete.excluir(id);
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+    return "usuarios";
+  }
 }
