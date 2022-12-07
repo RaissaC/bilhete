@@ -31,7 +31,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Data de Nascimento</th>
                         <th scope="col">CPF</th>
-                        <!--                        <th scope="col">Passagens</th>-->
+                        <th scope="col">Tipo de passagem</th>
                         <th scope="col">#</th>
                     </tr>
                     </thead>
@@ -41,8 +41,10 @@
                         <td th:text="${usuario.nome}"></td>
                         <td th:text="${{usuario.dataNascimento}}"></td>
                         <td th:text="${usuario.cpf}"></td>
-                        <!--      <td th:text="${usuario.tiposPassagem}"></td>-->
-                        <td><a th:href="@{/editar/{id}(id=${usuario.id})}">Editar</a></td>
+                        <td th:text="${usuario.tipoPassagem}"></td>
+
+
+                        <td><a th:href="@{/edicao/{id}(id=${usuario.id})}">Editar</a></td>
                     </tr>
                     </tbody>
                 </table>

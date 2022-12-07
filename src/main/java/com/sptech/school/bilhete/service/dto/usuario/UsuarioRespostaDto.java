@@ -1,4 +1,4 @@
-package com.sptech.school.bilhete.service.dto;
+package com.sptech.school.bilhete.service.dto.usuario;
 
 
 import com.sptech.school.bilhete.domain.Passagem;

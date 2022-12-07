@@ -4,7 +4,9 @@ package com.sptech.school.bilhete.controller.usuario;
 import com.sptech.school.bilhete.domain.Usuario;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.UsuarioServiceCreate;
+import com.sptech.school.bilhete.service.UsuarioServiceMutation;
 import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
+import com.sptech.school.bilhete.service.dto.usuario.UsuarioAtualizacaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class UsuarioController {
   @Autowired
   private UsuarioServiceCreate usuarioServiceCreate;
 
+  @Autowired
+  private UsuarioServiceMutation usuarioServiceMutation;
+
   @GetMapping("/usuarios")
   public String usuarios(Model model) {
     model.addAttribute("usuarios", usuarioRepository.findAll());
@@ -33,15 +38,11 @@ public class UsuarioController {
   }
 
   @PostMapping("/cadastrar")
-  public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, BindingResult result, RedirectAttributes redirectAttributes) {
+  public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, Model model) {
+    usuarioServiceCreate.criarUsuario(usuarioCriacao);
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+    return "usuarios";
 
-    if (result.hasErrors()) {
-      redirectAttributes.addAttribute("mensagem", "Mensagem de validação");
-      return "cadastro";
-    } else {
-      usuarioServiceCreate.criarUsuario(usuarioCriacao);
-      return "usuarios";
-    }
   }
 
   //  @GetMapping("/login")
@@ -56,10 +57,18 @@ public class UsuarioController {
 //    model.addAttribute("users", usuarioRepository.findAll());
 //  }/
 
-  @GetMapping("/editar/{id}")
-  public String editarusuario(@PathVariable("id") Integer id, Model model) {
+  @GetMapping("/edicao/{id}")
+  public String edicao(@PathVariable("id") Integer id, Model model) {
     Optional<Usuario> usuarioRepository = this.usuarioRepository.findById(id);
-    usuarioRepository.ifPresent(usuario -> model.addAttribute("usuario", usuario));
+    usuarioRepository.ifPresent(usuario -> model.addAttribute("usuarioAtualizacao", usuario));
     return "atualizacao";
   }
+
+  @GetMapping("/editar/{id}")
+  public String editarusuario(UsuarioAtualizacaoDto usuarioAtualizacao, Model model) {
+    usuarioServiceMutation.atualizarUsuario(usuarioAtualizacao);
+    model.addAttribute("usuarioAtualizacao", usuarioAtualizacao);
+    return "atualizacao";
+  }
+
 }
