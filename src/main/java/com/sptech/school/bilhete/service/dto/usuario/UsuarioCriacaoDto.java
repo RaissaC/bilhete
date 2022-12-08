@@ -1,11 +1,13 @@
-package com.sptech.school.bilhete.service.dto;
+package com.sptech.school.bilhete.service.dto.usuario;
 
+import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class UsuarioCriacaoDto implements Serializable {
   @NotNull
@@ -20,17 +22,18 @@ public class UsuarioCriacaoDto implements Serializable {
   @Size(min = 10, max = 15, message = "O cpf deve ser completo")
   private String cpf;
   @NotNull
-  @NotEmpty(message = "O campo deve conter o tipo de passagem utilizada mensalmente")
-  private String tipoPassagem;
+  @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
+  private List<Passagem> tiposPassagens;
 
-//  @NotNull
-//  private List<EnumTipo> tiposPassagem;
-
-  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, String tipoPassagem) {
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<Passagem> tiposPassagens) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.tipoPassagem = tipoPassagem;
+    this.tiposPassagens = tiposPassagens;
+  }
+
+  public UsuarioCriacaoDto() {
+
   }
 
   public String getNome() {
@@ -57,12 +60,12 @@ public class UsuarioCriacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public String getTipoPassagem() {
-    return tipoPassagem;
+  public List<Passagem> getTiposPassagens() {
+    return tiposPassagens;
   }
 
-  public void setTipoPassagem(String tipoPassagem) {
-    this.tipoPassagem = tipoPassagem;
+  public void setTiposPassagens(List<Passagem> tiposPassagens) {
+    this.tiposPassagens = tiposPassagens;
   }
 
   @Override
@@ -71,16 +74,7 @@ public class UsuarioCriacaoDto implements Serializable {
         "nome='" + nome + '\'' +
         ", dataNascimento=" + dataNascimento +
         ", cpf='" + cpf + '\'' +
-        ", tipoPassagem='" + tipoPassagem + '\'' +
+        ", tiposPassagens='" + tiposPassagens + '\'' +
         '}';
   }
-
-
-  //  public List<EnumTipo> getTiposPassagem() {
-//    return tiposPassagem;
-//  }
-//
-//  public void setTiposPassagem(List<EnumTipo> tiposPassagem) {
-//    this.tiposPassagem = tiposPassagem;
-//  }
 }

@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -23,11 +25,8 @@ public class Usuario {
   @Column(nullable = false, length = 20)
   private String cpf;
 
-  @Column(nullable = false, length = 20)
-  private String tipoPassagem;
-
-//    @OneToMany(mappedBy = "usuario")
-//    private List<Passagem> tiposPassagem;
+  @OneToMany(mappedBy = "usuario")
+  private List<Passagem> tiposPassagens = new ArrayList<>();
 
   public Integer getId() {
     return id;
@@ -61,19 +60,11 @@ public class Usuario {
     this.cpf = cpf;
   }
 
-  public String getTipoPassagem() {
-    return tipoPassagem;
+  public List<Passagem> getTipoPassagens() {
+    return tiposPassagens;
   }
 
-  public void setTipoPassagem(String tipoPassagem) {
-    this.tipoPassagem = tipoPassagem;
+  public void setTiposPassagens(List<Passagem> tiposPassagens) {
+    this.tiposPassagens = tiposPassagens;
   }
-
-//  public List<Passagem> getTiposPassagem() {
-//    return tiposPassagem;
-//  }
-//
-//  public void setTiposPassagem(List<Passagem> tiposPassagem) {
-//    this.tiposPassagem = tiposPassagem;
-//  }
 }

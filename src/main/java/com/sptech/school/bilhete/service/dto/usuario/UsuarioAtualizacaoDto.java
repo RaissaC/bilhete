@@ -1,11 +1,13 @@
 package com.sptech.school.bilhete.service.dto.usuario;
 
+import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class UsuarioAtualizacaoDto implements Serializable {
 
@@ -26,8 +28,8 @@ public class UsuarioAtualizacaoDto implements Serializable {
   private String cpf;
 
   @NotNull
-  @NotEmpty(message = "O campo deve conter o tipo de passagem utilizada mensalmente")
-  private String tipoPassagem;
+  @NotEmpty(message = "O campo deve conter ao menos um tipo de passagem")
+  private List<Passagem> tiposPassagens;
 
   public Integer getId() {
     return id;
@@ -61,19 +63,19 @@ public class UsuarioAtualizacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public String getTipoPassagem() {
-    return tipoPassagem;
+  public List<Passagem> getTiposPassagens() {
+    return tiposPassagens;
   }
 
-  public void setTipoPassagem(String tipoPassagem) {
-    this.tipoPassagem = tipoPassagem;
+  public void setTiposPassagens(List<Passagem> tiposPassagens) {
+    this.tiposPassagens = tiposPassagens;
   }
 
-  public UsuarioAtualizacaoDto(Integer id, String nome, LocalDate dataNascimento, String cpf, String tipoPassagem) {
+  public UsuarioAtualizacaoDto(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> tiposPassagens) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.tipoPassagem = tipoPassagem;
+    this.tiposPassagens = tiposPassagens;
   }
 }

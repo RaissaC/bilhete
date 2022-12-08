@@ -24,7 +24,7 @@
                 </div>
             </header>
             <div>
-                <form method="POST" action="/cadastrar">
+                <form method="POST" action="/cadastrar" th:object="${usuarioInicial}">
                     <p>
                         <label for="nome">Nome Completo</label>
                         <input type="text" class="form-control col-4" id="nome" name="nome"/>
@@ -38,19 +38,19 @@
                         <input type="text" class="form-control col-4" id="cpf" name="cpf">
                     </p>
                     <p>
-                        <label for="tipoPassagem">Tipo de passagem:</label>
-                        <input type="text" class="form-control col-4" id="tipoPassagem" name="tipoPassagem"/>
+                        <label for="cpf">Tipos de passagens </label>
                     </p>
-                    <!--                    <table>-->
-                    <!--                        <tr>-->
-                    <!--                            <td>-->
-                    <!--                                <th:block th:each="passagem : ${tipoPassagens}">-->
-                    <!--                                    <input type="checkbox" name="tipo" th:value="${passagem}"/>-->
-                    <!--                                    <label th:text="${passagem}"></label>-->
-                    <!--                                </th:block>-->
-                    <!--                            </td>-->
-                    <!--                        </tr>-->
-                    <!--                    </table>-->
+                    <table>
+                        <tr>
+                            <td>
+                                <th:block th:each="passagem : ${tiposPassagensUsuario}">
+                                    <input type="checkbox" th:value="${passagem}" th:field="${passagem}"/>
+                                    <label th:text="${passagem.tipo}"></label>
+                                </th:block>
+                            </td>
+                        </tr>
+                    </table>
+
                     <!--                    <ul>-->
                     <!--                        <li th:each="passagem : ${usuario.tiposPassagem}">-->
                     <!--                            <input type="checkbox" th:value="${passagem.id}">-->

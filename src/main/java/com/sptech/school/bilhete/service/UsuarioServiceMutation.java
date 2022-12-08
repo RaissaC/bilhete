@@ -3,7 +3,6 @@ package com.sptech.school.bilhete.service;
 import com.sptech.school.bilhete.domain.Usuario;
 import com.sptech.school.bilhete.mapper.UsuarioMapper;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
-import com.sptech.school.bilhete.service.dto.UsuarioCriacaoDto;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioAtualizacaoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class UsuarioServiceMutation {
       u.setNome(usuarioAtualizacao.getNome());
       u.setDataNascimento(usuarioAtualizacao.getDataNascimento());
       u.setCpf(usuarioAtualizacao.getCpf());
-      u.setTipoPassagem(usuarioAtualizacao.getTipoPassagem());
+      u.setTiposPassagens(usuarioAtualizacao.getTiposPassagens());
     });
 
     this.usuarioRepository.save(usuario);

@@ -1,20 +1,11 @@
 package com.sptech.school.bilhete.domain;
 
 import com.sptech.school.bilhete.Enum.EnumTipo;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Passagem {
 
   @Id
@@ -24,11 +15,22 @@ public class Passagem {
   @Column(nullable = false, updatable = false)
   private EnumTipo tipo;
 
-  @ManyToOne(optional = true, fetch = FetchType.LAZY)
+  @ManyToOne(optional = false, fetch = FetchType.LAZY)
   private Usuario usuario;
 
   @OneToMany(mappedBy = "passagem")
   private List<Bilhete> bilhetes;
+
+  public Passagem(Integer id, EnumTipo tipo, Usuario usuario, List<Bilhete> bilhetes) {
+    this.id = id;
+    this.tipo = tipo;
+    this.usuario = usuario;
+    this.bilhetes = bilhetes;
+  }
+
+  public Passagem() {
+
+  }
 
   public Integer getId() {
     return id;
@@ -61,4 +63,5 @@ public class Passagem {
   public void setBilhetes(List<Bilhete> bilhetes) {
     this.bilhetes = bilhetes;
   }
+
 }
