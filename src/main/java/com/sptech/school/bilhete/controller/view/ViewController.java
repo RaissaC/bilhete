@@ -22,13 +22,9 @@ public class ViewController {
 
   @GetMapping("/cadastro")
   public String getCadastro(Model model) {
-    model.addAttribute("tiposPassagensUsuario", new UsuarioCriacaoDto());
+    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
+    model.addAttribute("tiposPassagens", listaTiposPassagens);
     return "cadastro";
-
-
-//    List<EnumTipo> listaTiposPassagens = new ArrayList<>(List.of(EnumTipo.values()));
-//    model.addAttribute("usuarioInicial", usuarioCriacao);
-//    model.addAttribute("tiposPassagens", EnumTipo.values());
   }
 
 
