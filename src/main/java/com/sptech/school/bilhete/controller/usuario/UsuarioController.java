@@ -75,7 +75,7 @@ public class UsuarioController {
     return "usuarios";
   }
 
-  @DeleteMapping
+  @GetMapping("/excluir/{id}")
   public String excluir(@PathVariable Integer id, Model model) {
     usuarioServiceDelete.excluir(id);
     model.addAttribute("usuarios", usuarioRepository.findAll());
