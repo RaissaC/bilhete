@@ -29,7 +29,7 @@ public class UsuarioAtualizacaoDto implements Serializable {
 
   @NotNull
   @NotEmpty(message = "O campo deve conter ao menos um tipo de passagem")
-  private List<Passagem> tiposPassagens;
+  private List<Passagem> passagens;
 
   public Integer getId() {
     return id;
@@ -63,12 +63,12 @@ public class UsuarioAtualizacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public List<Passagem> getTiposPassagens() {
-    return tiposPassagens;
+  public List<Passagem> getPassagens() {
+    return passagens;
   }
 
-  public void setTiposPassagens(List<Passagem> tiposPassagens) {
-    this.tiposPassagens = tiposPassagens;
+  public void setPassagens(List<Passagem> passagens) {
+    this.passagens = passagens;
   }
 
   public UsuarioAtualizacaoDto(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> tiposPassagens) {
@@ -76,6 +76,6 @@ public class UsuarioAtualizacaoDto implements Serializable {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.tiposPassagens = tiposPassagens;
+    this.passagens = tiposPassagens;
   }
 }

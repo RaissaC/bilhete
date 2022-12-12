@@ -1,5 +1,6 @@
 package com.sptech.school.bilhete.service.dto.usuario;
 
+import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
@@ -21,20 +22,21 @@ public class UsuarioCriacaoDto implements Serializable {
   @NotEmpty(message = "O campo deve ser preenchido com o CPF do usuário")
   @Size(min = 10, max = 15, message = "O cpf deve ser completo")
   private String cpf;
+
   @NotNull
   @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
-  private List<Passagem> tiposPassagens;
+  private List<EnumTipo> tiposPassagem;
+  @NotNull
+  @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
+  private List<Passagem> passagens;
 
-  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<Passagem> tiposPassagens) {
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<String> tiposPassagem) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.tiposPassagens = tiposPassagens;
+    this.passagens = passagensUsuario(tiposPassagem);
   }
 
-  public UsuarioCriacaoDto() {
-
-  }
 
   public String getNome() {
     return nome;
@@ -60,12 +62,20 @@ public class UsuarioCriacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
+  public List<EnumTipo> getTiposPassagem() {
+    return tiposPassagem;
+  }
+
+  public void setTipoPassagem(List<EnumTipo> tiposPassagem) {
+    this.tiposPassagem = tiposPassagem;
+  }
+
   public List<Passagem> getTiposPassagens() {
-    return tiposPassagens;
+    return passagens;
   }
 
   public void setTiposPassagens(List<Passagem> tiposPassagens) {
-    this.tiposPassagens = tiposPassagens;
+    this.passagens = tiposPassagens;
   }
 
   @Override
@@ -74,7 +84,7 @@ public class UsuarioCriacaoDto implements Serializable {
         "nome='" + nome + '\'' +
         ", dataNascimento=" + dataNascimento +
         ", cpf='" + cpf + '\'' +
-        ", tiposPassagens='" + tiposPassagens + '\'' +
+        ", tiposPassagens='" + passagens + '\'' +
         '}';
   }
 }

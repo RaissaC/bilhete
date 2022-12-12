@@ -36,32 +36,34 @@
                         <label for="cpf">CPF </label>
                         <input type="text" class="form-control col-4" id="cpf" name="cpf">
                     </p>
-                    <p>
-                        <label for="cpf">Tipos de passagens </label>
-                    </p>
-                    <div>
-                        <input type="checkbox" id="dinheiro" name="tipoPassagem">
-                        <label for="dinheiro">Dinheiro</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="bilhete" name="tipoPassagem">
-                        <label for="bilhete">Bilhete</label>
-                    </div>
-
-
                     <!--                    <p>-->
-                    <!--                        <label for="cpf">Tipos de passagens com iteração do each </label>-->
+                    <!--                        <label for="cpf">Tipos de passagens </label>-->
                     <!--                    </p>-->
-                    <!--                    <table>-->
-                    <!--                        <tr>-->
-                    <!--                            <td>-->
-                    <!--                                <th:block th:each="passagem : ${tiposPassagens}">-->
-                    <!--                                    <input type="checkbox" th:value="${passagem}" id="passagem"/>-->
-                    <!--                                    <label th:text="${passagem}" for="passagem"></label>-->
-                    <!--                                </th:block>-->
-                    <!--                            </td>-->
-                    <!--                        </tr>-->
-                    <!--                    </table>-->
+                    <!--                    <div>-->
+                    <!--                        <input type="checkbox" id="dinheiro" name="passagens">-->
+                    <!--                        <label for="dinheiro">Dinheiro</label>-->
+                    <!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <input type="checkbox" id="bilhete" name="passagens">-->
+                    <!--                        <label for="bilhete">Bilhete</label>-->
+                    <!--                    </div>-->
+
+
+                    <p>
+                        <label for="cpf">Tipos de passagens com iteração do each </label>
+                    </p>
+                    <table>
+                        <tr>
+                            <td>
+                                <th:block th:each="passagem : ${tiposPassagens}">
+                                    <input type="checkbox" th:value="${passagem}" id="passagem"/>
+                                    <label th:text="${passagem}" for="passagem"></label>
+                                </th:block>
+                            </td>
+                        </tr>
+                    </table>
+
+
                     <p>
                     <ul class="actions">
                         <li><a href="/index" class="button large">Voltar</a></li>

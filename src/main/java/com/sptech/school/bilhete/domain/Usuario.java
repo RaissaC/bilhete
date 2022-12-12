@@ -17,7 +17,6 @@ public class Usuario {
   @Column(nullable = false, length = 45)
   private String nome;
 
-
   @Column(nullable = false)
   @DateTimeFormat(pattern = "dd/MM/yyyy")
   private LocalDate dataNascimento;
@@ -26,7 +25,37 @@ public class Usuario {
   private String cpf;
 
   @OneToMany(mappedBy = "usuario")
-  private List<Passagem> tiposPassagens = new ArrayList<>();
+  private List<Passagem> passagens;
+
+  public Usuario() {
+  }
+
+  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<String> tiposPassagem) {
+    this.id = id;
+    this.nome = nome;
+    this.dataNascimento = dataNascimento;
+    this.cpf = cpf;
+    this.passagens = passagensUsuario(tiposPassagem);
+  }
+
+  public List<Passagem> passagensUsuario(List<String> tiposPassagem) {
+    Passagem passagem = new Passagem();
+    List<Passagem> passagemUsuario = new ArrayList<>();
+
+    for (int i = 0; i < passagens.size(); i++) {
+      for (int j = 0; j < tiposPassagem.size(); j++) {
+        if (tiposPassagem.get(j).equals("Bilhete")) {
+          passagem.setTipo("Bilhte");
+
+        } else if (tiposPassagem.get(j).equals("Dinheiro")) {
+
+        } else {
+          return null;
+        }
+      }
+    }
+
+  }
 
   public Integer getId() {
     return id;
@@ -60,11 +89,13 @@ public class Usuario {
     this.cpf = cpf;
   }
 
-  public List<Passagem> getTipoPassagens() {
-    return tiposPassagens;
+  public List<Passagem> getPassagens() {
+    return passagens;
   }
 
-  public void setTiposPassagens(List<Passagem> tiposPassagens) {
-    this.tiposPassagens = tiposPassagens;
+  public void setPassagens(List<Passagem> passagens) {
+    this.passagens = passagens;
   }
+
+
 }

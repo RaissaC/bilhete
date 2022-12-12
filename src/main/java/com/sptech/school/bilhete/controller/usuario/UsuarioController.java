@@ -1,6 +1,7 @@
 package com.sptech.school.bilhete.controller.usuario;
 
 
+import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sptech.school.bilhete.domain.Usuario;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.UsuarioServiceCreate;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -34,12 +36,16 @@ public class UsuarioController {
 
   @GetMapping("/usuarios")
   public String usuarios(Model model) {
+    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
+    model.addAttribute("tiposPassagens", listaTiposPassagens);
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "usuarios";
   }
 
   @PostMapping("/cadastrar")
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, Model model) {
+//    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
+//    model.addAttribute("tiposPassagens", listaTiposPassagens);
     usuarioServiceCreate.criarUsuario(usuarioCriacao);
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "usuarios";

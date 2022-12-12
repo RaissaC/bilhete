@@ -1,6 +1,8 @@
 package com.sptech.school.bilhete.controller.view;
 
 import com.sptech.school.bilhete.Enum.EnumTipo;
+import com.sptech.school.bilhete.domain.Passagem;
+import com.sptech.school.bilhete.service.UsuarioServiceCreate;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioCriacaoDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import java.util.List;
 @RequestMapping("/")
 public class ViewController {
 
+  private UsuarioServiceCreate usuarioServiceCreate;
+
   @GetMapping("/index")
   public String index() {
     return "index";
@@ -22,6 +26,7 @@ public class ViewController {
 
   @GetMapping("/cadastro")
   public String getCadastro(Model model) {
+//    List<Passagem> passagens = usuarioServiceCreate.listPassagens();
     List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
     model.addAttribute("tiposPassagens", listaTiposPassagens);
     return "cadastro";

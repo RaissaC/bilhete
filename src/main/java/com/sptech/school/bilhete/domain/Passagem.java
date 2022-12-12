@@ -13,7 +13,7 @@ public class Passagem {
   private Integer id;
 
   @Column(nullable = false, updatable = false)
-  private EnumTipo tipo;
+  private String tipo;
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   private Usuario usuario;
@@ -21,11 +21,12 @@ public class Passagem {
   @OneToMany(mappedBy = "passagem")
   private List<Bilhete> bilhetes;
 
-  public Passagem(Integer id, EnumTipo tipo, Usuario usuario, List<Bilhete> bilhetes) {
+  //falta vincular os tipos de bilhetes
+  public Passagem(Integer id, String tipo, Usuario usuario) {
     this.id = id;
     this.tipo = tipo;
     this.usuario = usuario;
-    this.bilhetes = bilhetes;
+//    this.bilhetes = bilhetes;
   }
 
   public Passagem() {
@@ -40,11 +41,11 @@ public class Passagem {
     this.id = id;
   }
 
-  public EnumTipo getTipo() {
+  public String getTipo() {
     return tipo;
   }
 
-  public void setTipo(EnumTipo tipo) {
+  public void setTipo(String tipo) {
     this.tipo = tipo;
   }
 
