@@ -21,28 +21,6 @@ public class UsuarioServiceCreate {
   private UsuarioRepository usuarioRepository;
 
   public void criarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-
     usuarioRepository.save(usuarioMapper.toDomain(usuarioCriacaoDto));
   }
-
-
-  public List<Passagem> passagensUsuario(List<String> tiposPassagem) {
-    Passagem passagem = new Passagem();
-    List<Passagem> passagemUsuario = new ArrayList<>();
-
-    for (int i = 0; i < passagens.size(); i++) {
-      for (int j = 0; j < tiposPassagem.size(); j++) {
-        if (tiposPassagem.get(j).equals("Bilhete")) {
-          passagem.setTipo("Bilhte");
-
-        } else if (tiposPassagem.get(j).equals("Dinheiro")) {
-
-        } else {
-          return null;
-        }
-      }
-    }
-
-  }
-
 }

@@ -25,16 +25,13 @@ public class UsuarioCriacaoDto implements Serializable {
 
   @NotNull
   @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
-  private List<EnumTipo> tiposPassagem;
-  @NotNull
-  @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
   private List<Passagem> passagens;
 
-  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<String> tiposPassagem) {
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<Passagem> passagens) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.passagens = passagensUsuario(tiposPassagem);
+    this.passagens = passagens;
   }
 
 
@@ -62,20 +59,12 @@ public class UsuarioCriacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public List<EnumTipo> getTiposPassagem() {
-    return tiposPassagem;
-  }
-
-  public void setTipoPassagem(List<EnumTipo> tiposPassagem) {
-    this.tiposPassagem = tiposPassagem;
-  }
-
-  public List<Passagem> getTiposPassagens() {
+  public List<Passagem> getPassagens() {
     return passagens;
   }
 
-  public void setTiposPassagens(List<Passagem> tiposPassagens) {
-    this.passagens = tiposPassagens;
+  public void setPassagens(List<Passagem> passagens) {
+    this.passagens = passagens;
   }
 
   @Override
@@ -84,7 +73,7 @@ public class UsuarioCriacaoDto implements Serializable {
         "nome='" + nome + '\'' +
         ", dataNascimento=" + dataNascimento +
         ", cpf='" + cpf + '\'' +
-        ", tiposPassagens='" + passagens + '\'' +
+        ", passagens='" + passagens + '\'' +
         '}';
   }
 }

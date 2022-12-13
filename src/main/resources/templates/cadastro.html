@@ -50,14 +50,14 @@
 
 
                     <p>
-                        <label for="cpf">Tipos de passagens com iteração do each </label>
+                        <label for="cpf">Tipos de passagem </label>
                     </p>
                     <table>
                         <tr>
                             <td>
                                 <th:block th:each="passagem : ${tiposPassagens}">
-                                    <input type="checkbox" th:value="${passagem}" id="passagem"/>
-                                    <label th:text="${passagem}" for="passagem"></label>
+                                    <input type="checkbox" name="passagens" id="passagens" th:value="${passagem}"/>
+                                    <label th:text="${passagem}" for="passagens"></label>
                                 </th:block>
                             </td>
                         </tr>

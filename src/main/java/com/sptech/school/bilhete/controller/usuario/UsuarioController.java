@@ -9,6 +9,7 @@ import com.sptech.school.bilhete.service.UsuarioServiceDelete;
 import com.sptech.school.bilhete.service.UsuarioServiceMutation;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioCriacaoDto;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioAtualizacaoDto;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,10 +45,11 @@ public class UsuarioController {
 
   @PostMapping("/cadastrar")
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, Model model) {
-//    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
-//    model.addAttribute("tiposPassagens", listaTiposPassagens);
-    usuarioServiceCreate.criarUsuario(usuarioCriacao);
+    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
+    model.addAttribute("tiposPassagens", listaTiposPassagens);
     model.addAttribute("usuarios", usuarioRepository.findAll());
+    usuarioServiceCreate.criarUsuario(usuarioCriacao);
+
     return "usuarios";
   }
 

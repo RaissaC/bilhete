@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,38 +22,18 @@ public class Usuario {
 
   @Column(nullable = false, length = 20)
   private String cpf;
-
   @OneToMany(mappedBy = "usuario")
   private List<Passagem> passagens;
 
   public Usuario() {
   }
 
-  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<String> tiposPassagem) {
+  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> passagens) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.passagens = passagensUsuario(tiposPassagem);
-  }
-
-  public List<Passagem> passagensUsuario(List<String> tiposPassagem) {
-    Passagem passagem = new Passagem();
-    List<Passagem> passagemUsuario = new ArrayList<>();
-
-    for (int i = 0; i < passagens.size(); i++) {
-      for (int j = 0; j < tiposPassagem.size(); j++) {
-        if (tiposPassagem.get(j).equals("Bilhete")) {
-          passagem.setTipo("Bilhte");
-
-        } else if (tiposPassagem.get(j).equals("Dinheiro")) {
-
-        } else {
-          return null;
-        }
-      }
-    }
-
+    this.passagens = passagens;
   }
 
   public Integer getId() {
@@ -96,6 +75,4 @@ public class Usuario {
   public void setPassagens(List<Passagem> passagens) {
     this.passagens = passagens;
   }
-
-
 }
