@@ -15,10 +15,10 @@ public class Passagem {
   @Column(nullable = false, updatable = false)
   private String tipo;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Usuario usuario;
 
-  @OneToMany(mappedBy = "passagem")
+  @OneToMany
   private List<Bilhete> bilhetes;
 
   //falta vincular os tipos de bilhetes

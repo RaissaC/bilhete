@@ -36,28 +36,16 @@
                         <label for="cpf">CPF </label>
                         <input type="text" class="form-control col-4" id="cpf" name="cpf">
                     </p>
-                    <!--                    <p>-->
-                    <!--                        <label for="cpf">Tipos de passagens </label>-->
-                    <!--                    </p>-->
-                    <!--                    <div>-->
-                    <!--                        <input type="checkbox" id="dinheiro" name="passagens">-->
-                    <!--                        <label for="dinheiro">Dinheiro</label>-->
-                    <!--                    </div>-->
-                    <!--                    <div>-->
-                    <!--                        <input type="checkbox" id="bilhete" name="passagens">-->
-                    <!--                        <label for="bilhete">Bilhete</label>-->
-                    <!--                    </div>-->
-
-
                     <p>
                         <label for="cpf">Tipos de passagem </label>
                     </p>
                     <table>
                         <tr>
                             <td>
-                                <th:block th:each="passagem : ${tiposPassagens}">
-                                    <input type="checkbox" name="passagens" id="passagens" th:value="${passagem}"/>
-                                    <label th:text="${passagem}" for="passagens"></label>
+                                <th:block th:each="passagem, indexPassagem : ${tiposPassagens}">
+                                    <input type="checkbox" name="escolhaPassagens" th:id="'passagem' + ${indexPassagem.index}"
+                                           th:value="${passagem}"/>
+                                    <label th:text="${passagem}" th:for="'passagem' + ${indexPassagem.index}"></label>
                                 </th:block>
                             </td>
                         </tr>

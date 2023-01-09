@@ -1,7 +1,5 @@
 package com.sptech.school.bilhete.service.dto.usuario;
 
-import com.sptech.school.bilhete.Enum.EnumTipo;
-import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
@@ -24,14 +22,15 @@ public class UsuarioCriacaoDto implements Serializable {
   private String cpf;
 
   @NotNull
-  @NotEmpty(message = "O usuário deve conter ao menos um tipo de passagem")
-  private List<Passagem> passagens;
+  private String escolhaPassagens;
 
-  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, List<Passagem> passagens) {
+//  private List<Passagem> passagens;
+
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, String escolhaPassagens) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.passagens = passagens;
+    this.escolhaPassagens = escolhaPassagens;
   }
 
 
@@ -59,21 +58,20 @@ public class UsuarioCriacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public List<Passagem> getPassagens() {
-    return passagens;
+  public String getEscolhaPassagens() {
+    return escolhaPassagens;
   }
 
-  public void setPassagens(List<Passagem> passagens) {
-    this.passagens = passagens;
+  public void setEscolhaPassagens(String escolhaPassagens) {
+    this.escolhaPassagens = escolhaPassagens;
   }
 
-  @Override
-  public String toString() {
-    return "UsuarioCriacaoDto{" +
-        "nome='" + nome + '\'' +
-        ", dataNascimento=" + dataNascimento +
-        ", cpf='" + cpf + '\'' +
-        ", passagens='" + passagens + '\'' +
-        '}';
-  }
+  //  public List<Passagem> getPassagens() {
+//    return passagens;
+//  }
+//
+//  public void setPassagens(List<Passagem> passagens) {
+//    this.passagens = passagens;
+//  }
+
 }
