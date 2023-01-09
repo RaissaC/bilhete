@@ -25,10 +25,6 @@
             <div>
                 <form method="POST" action="/editar/{id}" th:object="${usuarioAtualizacao}">
                     <p>
-                        <label for="id">ID </label>
-                        <input type="text" class="form-control col-4" id="id" name="id" th:field="*{id}">
-                    </p>
-                    <p>
                         <label for="nome">Nome </label>
                         <input type="text" class="form-control col-4" id="nome" name="nome" th:field="*{nome}">
                     </p>
@@ -42,14 +38,21 @@
                         <input type="text" class="form-control col-4" id="cpf" name="cpf" th:field="*{cpf}">
                     </p>
                     <p>
-                        <label for="tipoPassagem">Tipo de passagem:</label>
-                        <input type="text" class="form-control col-4" id="tipoPassagem" name="tipoPassagem"
-                               th:field="*{tipoPassagem}">
+                        <label>Tipos de passagem </label>
                     </p>
-                    <!--        <p>-->
-                    <!--            <label for="passagens">Tipos de passagem: </label>-->
-                    <!--            <input size="50" type="text" class="form-control col-4" id="passagens" name="tiposPassagem">-->
-                    <!--        </p>-->
+                    <table>
+                        <tr>
+                            <td>
+                                <th:block th:each="passagem, indexPassagem : ${tiposPassagens}">
+                                    <input type="checkbox" name="escolhaPassagens"
+                                           th:id="'passagem' + ${indexPassagem.index}"
+                                           th:value="${passagem}"/>
+                                    <label th:text="${passagem}" th:for="'passagem' + ${indexPassagem.index}"></label>
+                                </th:block>
+                            </td>
+                        </tr>
+                    </table>
+
 
                     <ul class="actions">
                         <li><a href="/index" class="button large">Voltar</a></li>

@@ -53,6 +53,8 @@ public class UsuarioController {
   public String edicao(@PathVariable("id") Integer id, Model model) {
     Optional<Usuario> usuarioRepository = this.usuarioRepository.findById(id);
     usuarioRepository.ifPresent(usuario -> model.addAttribute("usuarioAtualizacao", usuario));
+    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
+    model.addAttribute("tiposPassagens", listaTiposPassagens);
     return "atualizacao";
   }
 
