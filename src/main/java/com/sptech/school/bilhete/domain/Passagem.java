@@ -12,8 +12,9 @@ public class Passagem {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false, updatable = false)
-  private String tipo;
+  private EnumTipo tipo;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private Usuario usuario;
@@ -21,8 +22,7 @@ public class Passagem {
   @OneToMany
   private List<Bilhete> bilhetes;
 
-  //falta vincular os tipos de bilhetes
-  public Passagem(Integer id, String tipo, Usuario usuario) {
+  public Passagem(Integer id, EnumTipo tipo, Usuario usuario) {
     this.id = id;
     this.tipo = tipo;
     this.usuario = usuario;
@@ -41,11 +41,11 @@ public class Passagem {
     this.id = id;
   }
 
-  public String getTipo() {
+  public EnumTipo getTipo() {
     return tipo;
   }
 
-  public void setTipo(String tipo) {
+  public void setTipo(EnumTipo tipo) {
     this.tipo = tipo;
   }
 
