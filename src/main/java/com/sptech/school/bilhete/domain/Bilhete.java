@@ -17,7 +17,7 @@ public class Bilhete {
   @Column(nullable = false, updatable = false)
   private EnumCategoria categoria;
 
-  @ManyToOne(optional = true, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   private Passagem passagem;
 
   public Bilhete(Integer id, LocalDateTime dataCriacao, EnumCategoria categoria, Passagem passagem) {

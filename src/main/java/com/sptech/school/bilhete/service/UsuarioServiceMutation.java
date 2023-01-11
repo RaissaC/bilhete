@@ -25,7 +25,7 @@ public class UsuarioServiceMutation {
       u.setNome(usuarioAtualizacao.getNome());
       u.setDataNascimento(usuarioAtualizacao.getDataNascimento());
       u.setCpf(usuarioAtualizacao.getCpf());
-      u.setEscolhaPassagens(usuarioAtualizacao.getEscolhaPassagens());
+//      u.setEscolhaPassagens(usuarioAtualizacao.getEscolhaPassagens());
     });
 
     this.usuarioRepository.save(usuario);

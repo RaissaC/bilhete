@@ -3,7 +3,6 @@ package com.sptech.school.bilhete.domain;
 import com.sptech.school.bilhete.Enum.EnumTipo;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Passagem {
@@ -12,21 +11,13 @@ public class Passagem {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @Enumerated(EnumType.STRING)
+//  @Enumerated(EnumType.STRING)
   @Column(nullable = false, updatable = false)
-  private EnumTipo tipo;
+  private String tipo;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private Usuario usuario;
-
-  @OneToMany
-  private List<Bilhete> bilhetes;
-
-  public Passagem(Integer id, EnumTipo tipo, Usuario usuario) {
+  public Passagem(Integer id, String tipo) {
     this.id = id;
     this.tipo = tipo;
-    this.usuario = usuario;
-//    this.bilhetes = bilhetes;
   }
 
   public Passagem() {
@@ -41,28 +32,15 @@ public class Passagem {
     this.id = id;
   }
 
-  public EnumTipo getTipo() {
+  public String getTipo() {
     return tipo;
   }
 
-  public void setTipo(EnumTipo tipo) {
+  public void setTipo(String tipo) {
     this.tipo = tipo;
   }
 
-  public Usuario getUsuario() {
-    return usuario;
-  }
-
-  public void setUsuario(Usuario usuario) {
-    this.usuario = usuario;
-  }
-
-  public List<Bilhete> getBilhetes() {
-    return bilhetes;
-  }
-
-  public void setBilhetes(List<Bilhete> bilhetes) {
-    this.bilhetes = bilhetes;
-  }
+  //  @OneToMany(mappedBy = "passagem")
+//  private List<Bilhete> bilhetes;
 
 }

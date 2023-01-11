@@ -1,13 +1,11 @@
 package com.sptech.school.bilhete.service.dto.usuario;
 
-import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 public class UsuarioCriacaoDto implements Serializable {
   @NotNull
@@ -25,8 +23,6 @@ public class UsuarioCriacaoDto implements Serializable {
   @NotNull
   private String escolhaPassagens;
 
-//  @NotNull
-//  private List<Passagem> passagens;
 
   public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, String escolhaPassagens) {
     this.nome = nome;
@@ -35,6 +31,9 @@ public class UsuarioCriacaoDto implements Serializable {
     this.escolhaPassagens = escolhaPassagens;
   }
 
+  public UsuarioCriacaoDto() {
+
+  }
 
   public String getNome() {
     return nome;
@@ -66,21 +65,5 @@ public class UsuarioCriacaoDto implements Serializable {
 
   public void setEscolhaPassagens(String escolhaPassagens) {
     this.escolhaPassagens = escolhaPassagens;
-  }
-
-  //  public List<Passagem> getPassagens() {
-//    return passagens;
-//  }
-//
-//  public void setPassagens(List<Passagem> passagens) {
-//    this.passagens = passagens;
-//  }
-
-
-  public List<Passagem> formartarPassagens(String escolhaPassagens){
-
-    String[] split = escolhaPassagens.split(",");
-    List<Passagem> passagesns = ;
-    return null;
   }
 }
