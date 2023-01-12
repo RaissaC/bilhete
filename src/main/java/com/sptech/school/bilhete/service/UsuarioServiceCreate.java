@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceCreate {
@@ -31,18 +29,16 @@ public class UsuarioServiceCreate {
   @Autowired
   private MeioPagamentoRepository meioPagamentoRepository;
 
-
   public void criarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
 
-    List<String> passagensEscolhidas = Arrays.stream(usuarioCriacaoDto.getEscolhaPassagens().split(",")).collect(Collectors.toList());
-    List<Passagem> byTipoIn = passagemRepository.findByTipoIn(passagensEscolhidas);
+    List<Passagem> passagemList = UsuarioMapper.listarPassagens(usuarioCriacaoDto.getEscolhaPassagens());
 
     List<MeioPagamento> pagamentos = new ArrayList<>();
     Usuario usuario = usuarioMapper.toDomain(usuarioCriacaoDto);
 
     usuarioRepository.save(usuario);
 
-    for (Passagem passagem : byTipoIn) {
+    for (Passagem passagem : passagemList) {
       MeioPagamento meioPagamento = new MeioPagamento();
 
       meioPagamento.setUsuario(usuario);
