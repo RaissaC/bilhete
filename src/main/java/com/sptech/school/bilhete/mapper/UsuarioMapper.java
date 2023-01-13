@@ -15,12 +15,6 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
 
-  @Autowired
-  PassagemRepository passagemRepository = null;
-
-  @Autowired
-  UsuarioCriacaoDto usuarioCriacaoDto = null;
-
   Usuario toDomain(UsuarioCriacaoDto usuarioCriacaoDto);
 
   Usuario toDomain(UsuarioAtualizacaoDto usuarioAtualizacaoDto);
