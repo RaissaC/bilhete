@@ -11,5 +11,4 @@ public interface PassagemRepository extends JpaRepository<Passagem, Integer> {
 
   List<Passagem> findByTipoIn(List<String> escolhaPassagens);
 
-
 }

@@ -24,6 +24,7 @@ public class Usuario {
   private String cpf;
 
   @OneToMany(mappedBy = "usuario")
+  @Column(nullable = true)
   private List<MeioPagamento> meioPagamentos;
 
   public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<MeioPagamento> meioPagamentos) {

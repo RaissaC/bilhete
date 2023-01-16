@@ -3,6 +3,7 @@ package com.sptech.school.bilhete.service;
 import com.sptech.school.bilhete.domain.MeioPagamento;
 import com.sptech.school.bilhete.domain.Passagem;
 import com.sptech.school.bilhete.domain.Usuario;
+import com.sptech.school.bilhete.mapper.UsuarioConfigMapper;
 import com.sptech.school.bilhete.mapper.UsuarioMapper;
 import com.sptech.school.bilhete.repository.MeioPagamentoRepository;
 import com.sptech.school.bilhete.repository.PassagemRepository;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceCreate {
@@ -29,23 +32,10 @@ public class UsuarioServiceCreate {
   @Autowired
   private MeioPagamentoRepository meioPagamentoRepository;
 
+  @Autowired
+  private UsuarioConfigMapper usuarioConfigMapper;
+
   public void criarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-
-    List<Passagem> passagemList = UsuarioMapper.listarPassagens(usuarioCriacaoDto.getEscolhaPassagens());
-
-    List<MeioPagamento> pagamentos = new ArrayList<>();
-    Usuario usuario = usuarioMapper.toDomain(usuarioCriacaoDto);
-
-    usuarioRepository.save(usuario);
-
-    for (Passagem passagem : passagemList) {
-      MeioPagamento meioPagamento = new MeioPagamento();
-
-      meioPagamento.setUsuario(usuario);
-      meioPagamento.setPassagem(passagem);
-      pagamentos.add(meioPagamento);
-    }
-
-    meioPagamentoRepository.saveAll(pagamentos);
+    usuarioConfigMapper.mapearEscolhasUsuario(usuarioCriacaoDto);
   }
 }
