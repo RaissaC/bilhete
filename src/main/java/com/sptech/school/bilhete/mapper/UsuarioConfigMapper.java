@@ -1,9 +1,9 @@
 package com.sptech.school.bilhete.mapper;
 
-import com.sptech.school.bilhete.domain.MeioPagamento;
+import com.sptech.school.bilhete.domain.EscolhaPagamento;
 import com.sptech.school.bilhete.domain.Passagem;
 import com.sptech.school.bilhete.domain.Usuario;
-import com.sptech.school.bilhete.repository.MeioPagamentoRepository;
+import com.sptech.school.bilhete.repository.EscolhaPagamentoRepository;
 import com.sptech.school.bilhete.repository.PassagemRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioCriacaoDto;
@@ -26,7 +26,7 @@ public class UsuarioConfigMapper {
   private UsuarioRepository usuarioRepository;
 
   @Autowired
-  private MeioPagamentoRepository meioPagamentoRepository;
+  private EscolhaPagamentoRepository escolhaPagamentoRepository;
 
   @Autowired
   private UsuarioMapper usuarioMapper;
@@ -34,19 +34,18 @@ public class UsuarioConfigMapper {
   public void mapearEscolhasUsuario(@NotNull UsuarioCriacaoDto usuarioCriacaoDto) {
     List<String> passagensEscolhidas = Arrays.stream(usuarioCriacaoDto.getEscolhaPassagens().split(",")).collect(Collectors.toList());
     List<Passagem> tipoVerificado = passagemRepository.findByTipoIn(passagensEscolhidas);
-    List<MeioPagamento> pagamentos = new ArrayList<>();
+    List<EscolhaPagamento> pagamentos = new ArrayList<>();
 
     Usuario usuarioSalvo = usuarioRepository.save(usuarioMapper.toDomain(usuarioCriacaoDto));
 
     for (Passagem passagemVerificada : tipoVerificado) {
-      MeioPagamento meioPagamento = new MeioPagamento();
-      meioPagamento.setUsuario(usuarioSalvo);
-      meioPagamento.setPassagem(passagemVerificada);
-      pagamentos.add(meioPagamento);
+      EscolhaPagamento escolhaPagamento = new EscolhaPagamento();
+      escolhaPagamento.setUsuario(usuarioSalvo);
+      escolhaPagamento.setPassagem(passagemVerificada);
+      pagamentos.add(escolhaPagamento);
     }
-    meioPagamentoRepository.saveAll(pagamentos);
+    escolhaPagamentoRepository.saveAll(pagamentos);
     usuarioSalvo.setMeioPagamentos(pagamentos);
     usuarioRepository.save(usuarioSalvo);
-
   }
 }

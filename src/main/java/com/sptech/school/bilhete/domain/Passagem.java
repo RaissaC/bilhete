@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Passagem {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(nullable = false, updatable = false)

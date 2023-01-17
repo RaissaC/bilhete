@@ -24,15 +24,14 @@ public class Usuario {
   private String cpf;
 
   @OneToMany(mappedBy = "usuario")
-  @Column(nullable = true)
-  private List<MeioPagamento> meioPagamentos;
+  private List<EscolhaPagamento> escolhaPagamentos;
 
-  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<MeioPagamento> meioPagamentos) {
+  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<EscolhaPagamento> escolhaPagamentos) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.meioPagamentos = meioPagamentos;
+    this.escolhaPagamentos = escolhaPagamentos;
   }
 
   public Usuario() {
@@ -71,11 +70,11 @@ public class Usuario {
     this.cpf = cpf;
   }
 
-  public List<MeioPagamento> getMeioPagamentos() {
-    return meioPagamentos;
+  public List<EscolhaPagamento> getMeioPagamentos() {
+    return escolhaPagamentos;
   }
 
-  public void setMeioPagamentos(List<MeioPagamento> meioPagamentos) {
-    this.meioPagamentos = meioPagamentos;
+  public void setMeioPagamentos(List<EscolhaPagamento> escolhaPagamentos) {
+    this.escolhaPagamentos = escolhaPagamentos;
   }
 }

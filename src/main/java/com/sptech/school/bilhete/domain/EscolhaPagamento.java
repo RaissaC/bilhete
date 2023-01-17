@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class MeioPagamento {
+public class EscolhaPagamento {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,14 +18,19 @@ public class MeioPagamento {
   @ManyToOne(fetch = FetchType.LAZY)
   private Passagem passagem;
 
-  public MeioPagamento(Integer id, Usuario usuario, Passagem passagem) {
+  public EscolhaPagamento(Integer id, Usuario usuario, Passagem passagem) {
     this.id = id;
     this.usuario = usuario;
     this.passagem = passagem;
   }
 
-  public MeioPagamento() {
+  public EscolhaPagamento() {
 
+  }
+
+  @Override
+  public String toString() {
+    return passagem.getTipo();
   }
 
   public Integer getId() {
