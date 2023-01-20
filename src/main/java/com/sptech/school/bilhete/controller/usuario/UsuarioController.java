@@ -3,16 +3,20 @@ package com.sptech.school.bilhete.controller.usuario;
 
 import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sptech.school.bilhete.domain.Usuario;
+import com.sptech.school.bilhete.repository.EscolhaPagamentoRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
-import com.sptech.school.bilhete.service.UsuarioServiceCreate;
-import com.sptech.school.bilhete.service.UsuarioServiceDelete;
-import com.sptech.school.bilhete.service.UsuarioServiceMutation;
-import com.sptech.school.bilhete.service.dto.usuario.UsuarioAtualizacaoDto;
+import com.sptech.school.bilhete.service.UsuarioServiceAtualizacao;
+import com.sptech.school.bilhete.service.UsuarioServiceCriacao;
+import com.sptech.school.bilhete.service.UsuarioServiceExclusao;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioCriacaoDto;
+import com.sptech.school.bilhete.service.dto.usuario.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,26 +30,32 @@ public class UsuarioController {
   private UsuarioRepository usuarioRepository;
 
   @Autowired
-  private UsuarioServiceCreate usuarioServiceCreate;
+  private UsuarioServiceCriacao usuarioServiceCriacao;
 
   @Autowired
-  private UsuarioServiceMutation usuarioServiceMutation;
+  private UsuarioServiceAtualizacao usuarioServiceAtualizacao;
 
   @Autowired
-  private UsuarioServiceDelete usuarioServiceDelete;
+  private UsuarioServiceExclusao usuarioServiceExclusao;
+
+  @Autowired
+  private EscolhaPagamentoRepository escolhaPagamentoRepository;
 
   @GetMapping("/usuarios")
   public String usuarios(Model model) {
     List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
     model.addAttribute("tiposPassagens", listaTiposPassagens);
+    //retornar objeto auxiliar com todas as passagens dos usuários formatados
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "usuarios";
   }
 
   @PostMapping("/cadastrar")
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, Model model) {
-    usuarioServiceCreate.criarUsuario(usuarioCriacao);
+    usuarioServiceCriacao.criarUsuario(usuarioCriacao);
+    //criar objeto auxiliar com todas as passagens dos usuários formatados
     model.addAttribute("usuarios", usuarioRepository.findAll());
+    model.addAttribute("escolhasPassagens", escolhaPagamentoRepository.findAll());
     return "usuarios";
   }
 
@@ -59,15 +69,15 @@ public class UsuarioController {
   }
 
   @PostMapping("/editar/{id}")
-  public String editarusuario(UsuarioAtualizacaoDto usuarioAtualizacao, Model model) {
-    usuarioServiceMutation.atualizarUsuario(usuarioAtualizacao);
+  public String editarusuario(UsuarioDto usuarioDto, Model model) {
+    usuarioServiceAtualizacao.atualizarUsuario(usuarioDto);
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "usuarios";
   }
 
-  @GetMapping("/excluir/{id}")
-  public String excluir(@PathVariable Integer id, Model model) {
-    usuarioServiceDelete.excluir(id);
+  @GetMapping("/excluirUsuario/{id}")
+  public String excluirUsuario(@PathVariable UsuarioDto usuarioDto, Model model) {
+    usuarioServiceExclusao.excluir(usuarioDto);
     model.addAttribute("usuarios", usuarioRepository.findAll());
     return "usuarios";
   }

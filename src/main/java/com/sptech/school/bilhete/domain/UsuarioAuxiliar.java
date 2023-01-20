@@ -3,11 +3,12 @@ package com.sptech.school.bilhete.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class UsuarioAuxiliar {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,19 +24,19 @@ public class Usuario {
   @Column(nullable = false, length = 20)
   private String cpf;
 
-  @OneToMany(mappedBy = "usuario")
-  private List<EscolhaPassagem> escolhasPagamentos;
+  @NotNull
+  List<Passagem> passagens;
 
-  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<EscolhaPassagem> escolhasPagamentos) {
+  public UsuarioAuxiliar() {
+
+  }
+
+  public UsuarioAuxiliar(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> passagens) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.escolhasPagamentos = escolhasPagamentos;
-  }
-
-  public Usuario() {
-
+    this.passagens = passagens;
   }
 
   public Integer getId() {
@@ -70,11 +71,11 @@ public class Usuario {
     this.cpf = cpf;
   }
 
-  public List<EscolhaPassagem> getMeioPagamentos() {
-    return escolhasPagamentos;
+  public List<Passagem> getPassagens() {
+    return passagens;
   }
 
-  public void setMeioPagamentos(List<EscolhaPassagem> escolhaPassagems) {
-    this.escolhasPagamentos = escolhaPassagems;
+  public void setPassagens(List<Passagem> passagens) {
+    this.passagens = passagens;
   }
 }

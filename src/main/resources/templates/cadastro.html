@@ -48,7 +48,7 @@
                         <tr>
                             <td>
                                 <th:block th:each="passagem, indexPassagem : ${tiposPassagens}">
-                                    <input type="checkbox" name="escolhaPassagens" th:id="'passagem' + ${indexPassagem.index}"
+                                    <input type="checkbox" name="checkedPassagens" th:id="'passagem' + ${indexPassagem.index}"
                                            th:value="${passagem}"/>
                                     <label th:text="${passagem}" th:for="'passagem' + ${indexPassagem.index}"></label>
                                 </th:block>

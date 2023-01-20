@@ -4,10 +4,9 @@ import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UsuarioCriacaoDto implements Serializable {
+public class UsuarioCriacaoDto{
   @NotNull
   @NotEmpty(message = "O campo deve ser preenchido com o nome completo do usuário")
   @Size(min = 3, max = 250)
@@ -21,14 +20,14 @@ public class UsuarioCriacaoDto implements Serializable {
   private String cpf;
 
   @NotNull
-  private String escolhaPassagens;
+  private String checkedPassagens;
 
 
-  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, String escolhaPassagens) {
+  public UsuarioCriacaoDto(String nome, LocalDate dataNascimento, String cpf, String checkedPassagens) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.escolhaPassagens = escolhaPassagens;
+    this.checkedPassagens = checkedPassagens;
   }
 
   public UsuarioCriacaoDto() {
@@ -59,11 +58,11 @@ public class UsuarioCriacaoDto implements Serializable {
     this.cpf = cpf;
   }
 
-  public String getEscolhaPassagens() {
-    return escolhaPassagens;
+  public String getCheckedPassagens() {
+    return checkedPassagens;
   }
 
-  public void setEscolhaPassagens(String escolhaPassagens) {
-    this.escolhaPassagens = escolhaPassagens;
+  public void setCheckedPassagens(String checkedPassagens) {
+    this.checkedPassagens = checkedPassagens;
   }
 }

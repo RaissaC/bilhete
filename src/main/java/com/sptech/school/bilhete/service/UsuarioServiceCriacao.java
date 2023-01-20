@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UsuarioServiceCreate {
+public class UsuarioServiceCriacao {
 
   @Autowired
   private UsuarioMapper usuarioMapper;
@@ -28,6 +28,6 @@ public class UsuarioServiceCreate {
   private UsuarioConfigMapper usuarioConfigMapper;
 
   public void criarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) {
-    usuarioConfigMapper.mapearEscolhasUsuario(usuarioCriacaoDto);
+    usuarioConfigMapper.cadastrarEscolhasUsuario(usuarioCriacaoDto);
   }
 }

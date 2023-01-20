@@ -1,27 +1,23 @@
 package com.sptech.school.bilhete.service.dto.usuario;
 
-import com.sptech.school.bilhete.domain.Passagem;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
-public class UsuarioAtualizacaoDto implements Serializable {
+public class UsuarioDto {
 
   @NotNull
   private Integer id;
+
   @NotNull
   @NotEmpty(message = "O campo deve ser preenchido com o nome completo do usuário")
   @Size(min = 3, max = 250)
   private String nome;
-
   @NotNull
   @NotEmpty(message = "O campo deve ser preenchido com a data de nascimento do usuário")
   private LocalDate dataNascimento;
-
   @NotNull
   @NotEmpty(message = "O campo deve ser preenchido com o CPF do usuário")
   @Size(min = 10, max = 15, message = "O cpf deve ser completo")
@@ -30,17 +26,19 @@ public class UsuarioAtualizacaoDto implements Serializable {
   @NotNull
   private String escolhaPassagens;
 
-//  @NotNull
-//  @NotEmpty(message = "O campo deve conter ao menos um tipo de passagem")
-//  private List<Passagem> passagens;
 
-  public Integer getId() {
-    return id;
+  public UsuarioDto(String nome, LocalDate dataNascimento, String cpf, String escolhaPassagens) {
+    this.nome = nome;
+    this.dataNascimento = dataNascimento;
+    this.cpf = cpf;
+    this.escolhaPassagens = escolhaPassagens;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public UsuarioDto() {
+
   }
+
+
 
   public String getNome() {
     return nome;
@@ -74,19 +72,4 @@ public class UsuarioAtualizacaoDto implements Serializable {
     this.escolhaPassagens = escolhaPassagens;
   }
 
-  //  public List<Passagem> getPassagens() {
-//    return passagens;
-//  }
-//
-//  public void setPassagens(List<Passagem> passagens) {
-//    this.passagens = passagens;
-//  }
-
-  public UsuarioAtualizacaoDto(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> tiposPassagens) {
-    this.id = id;
-    this.nome = nome;
-    this.dataNascimento = dataNascimento;
-    this.cpf = cpf;
-//    this.passagens = tiposPassagens;
-  }
 }
