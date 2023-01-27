@@ -1,5 +1,7 @@
 package com.sptech.school.bilhete.domain;
 
+import com.sptech.school.bilhete.domain.auxiliar.UsuarioAuxiliar;
+
 import javax.persistence.*;
 
 @Entity
@@ -35,5 +37,13 @@ public class Passagem {
 
   public void setTipo(String tipo) {
     this.tipo = tipo;
+  }
+
+  public UsuarioAuxiliar getUsuarioAuxiliar() {
+    return usuarioAuxiliar;
+  }
+
+  public void setUsuarioAuxiliar(UsuarioAuxiliar usuarioAuxiliar) {
+    this.usuarioAuxiliar = usuarioAuxiliar;
   }
 }

@@ -37,16 +37,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="usuario : ${usuarios}">
-                        <td th:text="${usuario.id}"></td>
-                        <td th:text="${usuario.nome}"></td>
-                        <td th:text="${{usuario.dataNascimento}}"></td>
-                        <td th:text="${usuario.cpf}"></td>
-                    <tr th:each="escolha : ${escolhasPassagens}">
-                        <td th:text="${escolha}"></td>
+                    <tr th:each="usuarioAuxiliar : ${usuariosAuxiliares}">
+                        <td th:text="${usuarioAuxiliar.id}"></td>
+                        <td th:text="${usuarioAuxiliar.nome}"></td>
+                        <td th:text="${{usuarioAuxiliar.dataNascimento}}"></td>
+                        <td th:text="${usuarioAuxiliar.cpf}"></td>
+                    <tr th:each="passagemEscolhida : ${passagens}">
+                        <td th:text="${passagemEscolhida}"></td>
                     <tr>
-                        <td><a th:href="@{/edicao/{id}(id=${usuario.id})}">Editar</a></td>
-                        <td><a th:href="@{/excluir/{id}(id=${usuario.id})}">Excluir</a></td>
+                        <td><a th:href="@{/edicao/{id}(id=${usuarioAuxiliar.id})}">Editar</a></td>
+                        <td><a th:href="@{/excluir/{id}(id=${usuarioAuxiliar.id})}">Excluir</a></td>
                     </tr>
                     </tbody>
                 </table>

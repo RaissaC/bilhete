@@ -10,7 +10,7 @@ import java.util.List;
 public class Usuario {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(nullable = false, length = 45)
@@ -24,14 +24,14 @@ public class Usuario {
   private String cpf;
 
   @OneToMany(mappedBy = "usuario")
-  private List<EscolhaPassagem> escolhasPagamentos;
+  private List<EscolhaPassagem> escolhasPassagens;
 
-  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<EscolhaPassagem> escolhasPagamentos) {
+  public Usuario(Integer id, String nome, LocalDate dataNascimento, String cpf, List<EscolhaPassagem> escolhasPassagens) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.escolhasPagamentos = escolhasPagamentos;
+    this.escolhasPassagens = escolhasPassagens;
   }
 
   public Usuario() {
@@ -70,11 +70,11 @@ public class Usuario {
     this.cpf = cpf;
   }
 
-  public List<EscolhaPassagem> getMeioPagamentos() {
-    return escolhasPagamentos;
+  public List<EscolhaPassagem> getEscolhasPassagens() {
+    return escolhasPassagens;
   }
 
-  public void setMeioPagamentos(List<EscolhaPassagem> escolhaPassagems) {
-    this.escolhasPagamentos = escolhaPassagems;
+  public void setEscolhasPassagens(List<EscolhaPassagem> escolhasPassagens) {
+    this.escolhasPassagens = escolhasPassagens;
   }
 }

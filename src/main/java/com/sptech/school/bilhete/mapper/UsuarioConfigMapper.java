@@ -3,7 +3,8 @@ package com.sptech.school.bilhete.mapper;
 import com.sptech.school.bilhete.domain.EscolhaPassagem;
 import com.sptech.school.bilhete.domain.Passagem;
 import com.sptech.school.bilhete.domain.Usuario;
-import com.sptech.school.bilhete.repository.EscolhaPagamentoRepository;
+import com.sptech.school.bilhete.domain.auxiliar.UsuarioAuxiliar;
+import com.sptech.school.bilhete.repository.EscolhaPassagemRepository;
 import com.sptech.school.bilhete.repository.PassagemRepository;
 import com.sptech.school.bilhete.repository.UsuarioAuxiliarRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +29,7 @@ public class UsuarioConfigMapper {
   private UsuarioRepository usuarioRepository;
 
   @Autowired
-  private EscolhaPagamentoRepository escolhaPagamentoRepository;
+  private EscolhaPassagemRepository escolhaPagamentoRepository;
 
   @Autowired
   private UsuarioMapper usuarioMapper;
@@ -37,11 +37,23 @@ public class UsuarioConfigMapper {
   private UsuarioAuxiliarRepository usuarioAuxiliarRepository;
 
   public void cadastrarEscolhasUsuario(@NotNull UsuarioCriacaoDto usuarioCriacaoDto) {
+    UsuarioAuxiliar usuarioAuxiliar = new UsuarioAuxiliar();
     Usuario usuarioSalvo = usuarioRepository.save(usuarioMapper.toDomain(usuarioCriacaoDto));
     List<EscolhaPassagem> escolhasPassagem = cadastrarEscolhasVerificadas(usuarioCriacaoDto, usuarioSalvo);
 
-    usuarioSalvo.setMeioPagamentos(escolhasPassagem);
+    usuarioSalvo.setEscolhasPassagens(escolhasPassagem);
     usuarioRepository.save(usuarioSalvo);
+
+    List<Passagem> passagens = escolhasPassagem
+        .stream()
+        .map(item -> item.getPassagem())
+        .collect(Collectors.toList());
+
+    usuarioAuxiliar.setNome(usuarioSalvo.getNome());
+    usuarioAuxiliar.setDataNascimento(usuarioSalvo.getDataNascimento());
+    usuarioAuxiliar.setCpf(usuarioSalvo.getCpf());
+    usuarioAuxiliar.setPassagens(passagens);
+    usuarioAuxiliarRepository.save(usuarioAuxiliar);
   }
 
   public List<EscolhaPassagem> cadastrarEscolhasVerificadas(UsuarioCriacaoDto usuarioCriacaoDto, Usuario usuarioSalvo) {
@@ -54,25 +66,6 @@ public class UsuarioConfigMapper {
       escolhasPassagem.add(escolhaPassagem);
     }
     return escolhaPagamentoRepository.saveAll(escolhasPassagem);
-  }
-
-  public void cadastrarUsuarioAuxiliarCompleto(UsuarioCriacaoDto usuarioCriacaoDto, Usuario usuarioSalvo) {
-
-    List<Passagem> passagens = formatarPassagensUsuarioCriacao(usuarioCriacaoDto);
-    List<EscolhaPassagem> escolhaPassagens = cadastrarEscolhasVerificadas(usuarioCriacaoDto, usuarioSalvo);
-
-    for (int escolha = 0; escolha < escolhaPassagens.size(); escolha++) {
-
-      
-      usuarioRepository.findById(usuarioSalvo.getId());
-
-
-      for (int passagemUsuario = 0; passagemUsuario < passagens.size(); passagemUsuario++) {
-
-      }
-    }
-
-
   }
 
   public List<Passagem> formatarPassagensUsuarioCriacao(UsuarioCriacaoDto usuarioCriacaoDto) {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EscolhaPagamentoRepository extends JpaRepository<EscolhaPassagem, Integer> {
+public interface EscolhaPassagemRepository extends JpaRepository<EscolhaPassagem, Integer> {
 
   @Query("SELECT mp FROM EscolhaPassagem mp " +
       "JOIN Usuario us " +

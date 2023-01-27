@@ -3,7 +3,7 @@ package com.sptech.school.bilhete.controller.usuario;
 
 import com.sptech.school.bilhete.Enum.EnumTipo;
 import com.sptech.school.bilhete.domain.Usuario;
-import com.sptech.school.bilhete.repository.EscolhaPagamentoRepository;
+import com.sptech.school.bilhete.repository.UsuarioAuxiliarRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.UsuarioServiceAtualizacao;
 import com.sptech.school.bilhete.service.UsuarioServiceCriacao;
@@ -30,6 +30,9 @@ public class UsuarioController {
   private UsuarioRepository usuarioRepository;
 
   @Autowired
+  private UsuarioAuxiliarRepository usuarioAuxiliarRepository;
+
+  @Autowired
   private UsuarioServiceCriacao usuarioServiceCriacao;
 
   @Autowired
@@ -38,24 +41,17 @@ public class UsuarioController {
   @Autowired
   private UsuarioServiceExclusao usuarioServiceExclusao;
 
-  @Autowired
-  private EscolhaPagamentoRepository escolhaPagamentoRepository;
 
   @GetMapping("/usuarios")
   public String usuarios(Model model) {
-    List<EnumTipo> listaTiposPassagens = List.of(EnumTipo.values());
-    model.addAttribute("tiposPassagens", listaTiposPassagens);
-    //retornar objeto auxiliar com todas as passagens dos usuários formatados
-    model.addAttribute("usuarios", usuarioRepository.findAll());
+    model.addAttribute("usuariosAuxiliares", usuarioAuxiliarRepository.findAll());
     return "usuarios";
   }
 
   @PostMapping("/cadastrar")
   public String cadastrarUsuario(@Valid UsuarioCriacaoDto usuarioCriacao, Model model) {
     usuarioServiceCriacao.criarUsuario(usuarioCriacao);
-    //criar objeto auxiliar com todas as passagens dos usuários formatados
-    model.addAttribute("usuarios", usuarioRepository.findAll());
-    model.addAttribute("escolhasPassagens", escolhaPagamentoRepository.findAll());
+    model.addAttribute("usuariosAuxiliares", usuarioAuxiliarRepository.findAll());
     return "usuarios";
   }
 

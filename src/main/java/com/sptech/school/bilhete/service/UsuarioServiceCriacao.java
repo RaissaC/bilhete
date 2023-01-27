@@ -2,7 +2,7 @@ package com.sptech.school.bilhete.service;
 
 import com.sptech.school.bilhete.mapper.UsuarioConfigMapper;
 import com.sptech.school.bilhete.mapper.UsuarioMapper;
-import com.sptech.school.bilhete.repository.EscolhaPagamentoRepository;
+import com.sptech.school.bilhete.repository.EscolhaPassagemRepository;
 import com.sptech.school.bilhete.repository.PassagemRepository;
 import com.sptech.school.bilhete.repository.UsuarioRepository;
 import com.sptech.school.bilhete.service.dto.usuario.UsuarioCriacaoDto;
@@ -22,7 +22,7 @@ public class UsuarioServiceCriacao {
   private PassagemRepository passagemRepository;
 
   @Autowired
-  private EscolhaPagamentoRepository escolhaPagamentoRepository;
+  private EscolhaPassagemRepository escolhaPagamentoRepository;
 
   @Autowired
   private UsuarioConfigMapper usuarioConfigMapper;

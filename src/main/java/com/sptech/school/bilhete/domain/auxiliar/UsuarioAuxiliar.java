@@ -1,9 +1,9 @@
-package com.sptech.school.bilhete.domain;
+package com.sptech.school.bilhete.domain.auxiliar;
 
+import com.sptech.school.bilhete.domain.Passagem;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class UsuarioAuxiliar {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @Column(nullable = false, length = 45)
@@ -24,19 +24,20 @@ public class UsuarioAuxiliar {
   @Column(nullable = false, length = 20)
   private String cpf;
 
-  @NotNull
-  List<Passagem> passagens;
+  @Column(nullable = false)
+  @OneToMany(mappedBy = "usuarioAuxiliar")
+  private List<PassagemAuxiliar> passagensAuxiliares;
 
   public UsuarioAuxiliar() {
 
   }
 
-  public UsuarioAuxiliar(Integer id, String nome, LocalDate dataNascimento, String cpf, List<Passagem> passagens) {
+  public UsuarioAuxiliar(Integer id, String nome, LocalDate dataNascimento, String cpf, List<PassagemAuxiliar> passagensAuxiliares) {
     this.id = id;
     this.nome = nome;
     this.dataNascimento = dataNascimento;
     this.cpf = cpf;
-    this.passagens = passagens;
+    this.passagensAuxiliares = passagensAuxiliares;
   }
 
   public Integer getId() {
@@ -71,11 +72,11 @@ public class UsuarioAuxiliar {
     this.cpf = cpf;
   }
 
-  public List<Passagem> getPassagens() {
-    return passagens;
+  public List<PassagemAuxiliar> getPassagensAuxiliares() {
+    return passagensAuxiliares;
   }
 
-  public void setPassagens(List<Passagem> passagens) {
-    this.passagens = passagens;
+  public void setPassagensAuxiliares(List<PassagemAuxiliar> passagensAuxiliares) {
+    this.passagensAuxiliares = passagensAuxiliares;
   }
 }
